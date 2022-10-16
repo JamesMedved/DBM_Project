@@ -8,7 +8,7 @@ try:
     connection = mysql.connector.connect(host = 'localhost',
                                         database = 'dbsmproject',
                                         user = 'root',
-                                        password = 'JimmyLikesBoys123!')
+                                        password = 'RooT1234@@')
     if connection.is_connected():   # Connection successful
         # Grabbing server info. Verifies we are connected to the right database
         db_Info = connection.get_server_info()
