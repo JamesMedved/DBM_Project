@@ -14,4 +14,7 @@ From prime;
 Select Count(*) As total	# 22,425
 From streaming;
 
+Select Distinct title_id	# 21553
+from streaming;
+
 # Total Rows = 22425

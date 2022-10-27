@@ -43,4 +43,4 @@ From prime p
 LEFT JOIN streaming s ON p.title = s.title
 Where s.title IS NULL;
 
-ROLLBACK;
+COMMIT;
