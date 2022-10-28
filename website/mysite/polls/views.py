@@ -1,5 +1,8 @@
 from django.http import HttpResponse
+from django.shortcuts import render
+from .models import Titles
 
 # Create your views here.
-def index(request):
-    return HttpResponse("Hello, world. You're at the polls index.")
+def homepage(request):
+    title_list = Titles.objects.all()
+    return render(request, 'homepage.html', {'title_list': title_list})
