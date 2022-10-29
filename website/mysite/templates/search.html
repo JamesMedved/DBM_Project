@@ -16,15 +16,19 @@
         
         <form class="dbm" method=POST action="{% url 'search' %}" style="margin:auto;max-width:300px">
           {% csrf_token %}
-          <input type="text" placeholder="Titles, People, Genres, etc. " name="it_search">
+          <input type="text" placeholder="Titles, People, Genres, etc. " name="search">
           <button type="submit"><i class="fa fa-search"></i></button>
         </form>
 
-        <!-- {{ error }} -->
-
-        {% for instance in title_set %}
-          <p>{{ instance.name }} </p>
-        {% endfor %}
+        <form style="margin:auto;max-width:300px">
+          {% for instance in title_set %}
+            <p>{{ instance.name }} </p>
+          {% empty %}
+            {% if search %}
+              <h2><center>No Results Found!</center></h2>
+            {% endif %}
+          {% endfor %}
+       </form>
 
         </body>
 </html>
