@@ -16,6 +16,10 @@ class Streaming(models.Model):
     listedin = models.CharField(db_column='ListedIn', max_length=100, blank=True, null=True)  # Field name made lowercase.
     title = models.CharField(max_length=250, blank=True, null=True)
 
+    class Meta:
+        managed = False
+        db_table = 'streaming'
+        unique_together = (('title_id', 'provider'),)
 
 
 class Titles(models.Model):
@@ -28,3 +32,7 @@ class Titles(models.Model):
     release_year = models.IntegerField(blank=True, null=True)
     cast = models.CharField(max_length=2048, blank=True, null=True)
     director = models.CharField(max_length=1024, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'titles'
