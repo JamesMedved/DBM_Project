@@ -6,7 +6,7 @@
     <h1>Search Netflix, Amazon, Hulu, and Disney+</h1>
   </div>
 
-  <form class="dbm" method=POST action="" style="margin:auto;max-width:300px">
+  <form class="search" method=POST action="" style="margin:auto;max-width:300px">
     {% csrf_token %}
     <input type="text" placeholder="Title, Cast, Director, etc. " name="search">
     <button type="submit"><i class="fa fa-search"></i></button>
