@@ -1,0 +1,32 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lan="en" and dir = "Itr">
+<head>
+    <meta charset = "utf-8">
+    <title> Login page for users</title>
+    <link rel="stylesheet" href="{% static 'css/loginstyle.css' %}">
+    <img src="{% static 'images/login_background.jpg' %}" alt="My image"/>
+
+</head>
+
+<body> 
+<form class="box" action="home/" method="POST">
+    <script src = "login.js"></script>
+
+        <h1>
+            log in
+        </h1>
+
+    <input type="text" name="" placeholder="Username" id="username">
+    <input type="password" name="" placeholder="Password" id="password">
+    <input type="submit" name="" value="Sign in" onclick="validate()">
+
+</form>
+
+
+</body>
+
+
+
+</html>

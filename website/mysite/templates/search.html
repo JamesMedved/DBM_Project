@@ -1,0 +1,48 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Medved Schmidt DBM Project</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+  <h2>
+    <center>Search Netflix, Amazon, Hulu, and Disney+</center>
+  </h2>
+
+  <form class="dbm" method=POST action="{% url 'search' %}" style="margin:auto;max-width:300px">
+    {% csrf_token %}
+    <input type="text" placeholder="Titles, People, Genres, etc. " name="search">
+    <button type="submit"><i class="fa fa-search"></i></button>
+  </form>
+
+  <div class="container">
+    <div class="table">
+      <table id="info">
+        <tr>
+          <th> Titles </th>
+          <th> Cast </th>
+          <th> Director </th>
+        </tr>
+        {% for instance in title_set %}
+        <tr>
+          <td> {{ instance.name }} </td>
+          <td>{{ instance.cast }} </td>
+          <td>{{ instance.director }} </td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </div>
+
+</body>
+
+</html>
