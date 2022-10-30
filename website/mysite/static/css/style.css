@@ -141,26 +141,24 @@ background-color: #e0dfdf;
 table tr:hover {background-color: rgb(187, 184, 184);}
 
 /* Watch Later Button style */
-.add input[type="submit"]{
+.add {
   border:0;
   background: rgb(188,199,216);
   font-size: 20px;
-  display: black;
-  margin-left: 25px;
+  margin-left: 30px;
   margin-bottom: 10px;
   text-align: center;
-  width: 40px;
-  padding: 10px 10px;
+  width: 30px;
   outline: none;
   color: white;
-  border-radius: 30px;
+  border-radius: 40px;
   transition:0.25px;
   cursor: pointer;
 }
 
-.add input[type="submit"]:hover{
-  background: rgb(73,97,132);
-  }
+.add:hover {
+  background: rgb(40,55,82);
+}
 
 .none {
   padding-top: 50px;

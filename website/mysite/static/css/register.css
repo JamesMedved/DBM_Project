@@ -2,7 +2,10 @@ body {
     margin:0;
     padding:0;
     height: 100%;
-    background: rgb(73,97,132) !important;
+    background-image: linear-gradient(rgb(40,55,82), rgb());
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
 }
 
 .container {
