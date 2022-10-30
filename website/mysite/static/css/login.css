@@ -59,6 +59,10 @@ body {
     color:white;
 }
 
+.Already a{
+    color: orange;
+}
+
 .flash-message {
     color:red;
 }
