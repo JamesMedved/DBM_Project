@@ -58,3 +58,7 @@ body {
 .Already {
     color:white;
 }
+
+.flash-message {
+    color:red;
+}
