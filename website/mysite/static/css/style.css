@@ -44,7 +44,7 @@ body {
     width: 100%;
     float: left;
     height: 85px;
-    font: sans-serif;
+    font-family: Arial;
     background: rgb(73,97,132);
     padding: 0;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
@@ -68,7 +68,7 @@ body {
   ul li a{
     text-decoration: none;
     color: white;
-    font: sans-serif;
+    font-family: Arial;
     font-weight: bold;
     transition: 0.4s ease-in-out;
   }
@@ -84,7 +84,7 @@ body {
     color: black;
     font-size: 18px;
     padding: 10px;
-    font: Arial; 
+    font-family: Arial;
   }
 
   .title h1 {
@@ -95,7 +95,7 @@ body {
 
 .welcome {
   text-decoration: none;
-  font: sans-serif;
+  font-family: Arial;
   color: white;
   padding-right:20px;
   padding-top: 10px;
@@ -105,7 +105,7 @@ body {
 }
 
 .container {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial;
   position:absolute;
   margin-top:200px;
 }
@@ -166,11 +166,13 @@ table tr:hover {background-color: rgb(187, 184, 184);}
 .none {
   padding-top: 50px;
   width: 400px;
-  font-size: 40px;
+  font-size: 24px;
   color: black;
   font-family: Arial;
   position: center;
+  text-align: center;
   height: 80px;
   margin: auto;
-  margin-top: 60px;
+  margin-top: 120px;
+  font-weight: bold;
 }

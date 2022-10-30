@@ -5,7 +5,7 @@
 
 <link rel="stylesheet" href="{% static 'css/watch_later.css' %}">
 
-  {% if comb_set %}
+  {% if watch_later_set %}
     <div class="title">
       <h1>Watch Later</h1>
     </div>
@@ -58,7 +58,9 @@
       </div>
     </div>
   {% else %}
-    <h2><center>Your watch list is empty. You can add titles from the Search tab.</center></h2>
+    <div class="title">
+      <h1>Your Watch Later List is Empty</h1>
+    </div>
   {% endif %}
 
 {% endblock %}
