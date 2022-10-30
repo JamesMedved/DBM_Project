@@ -1,31 +1,36 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lan="en" and dir = "Itr">
-<head>
-    <meta charset = "utf-8">
-    <title> Login page for users</title>
-    <link rel="stylesheet" href="{% static 'css/loginstyle.css' %}">
-    <img src="{% static 'images/login_background.jpg' %}" alt="My image"/>
+<html>
+    <body>
+        <head>
+            <meta charset="utf-8">
+            <title>Login form</title>
+            <meta name="description" content="">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="stylesheet" href="{% static 'css/login.css' %}">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        </head>
 
-</head>
+        <form method="POST" action="">
+            {% csrf_token %}
+            <div class = "container">
+                <h1>
+                    Log In
+                </h1>
+                <div class = "input-group">
+                    <input type="text" placeholder="Username..." name="username">
 
-<body> 
-<form class="box" action="home/" method="POST">
+                    <input type="password" placeholder="Password..." name="password">
 
-        <h1>
-            log in
-        </h1>
+                    <input class="btn login_btn" type="submit" name="Log In" value="Log In">
 
-    <input type="text" name="" placeholder="Username" id="username">
-    <input type="password" name="" placeholder="Password" id="password">
-    <input type="submit" name="" value="Sign in">
+                    <div class ="Already">
+                        Don't have an account? <a href="{% url 'registerPage' %}" class="m1-2">Sign Up</a>
+                    </div>
+                </div>
+            </div>
 
-</form>
-
-
-</body>
-
-
-
+        </form>
+    </body>
 </html>
