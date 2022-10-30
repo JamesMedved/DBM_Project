@@ -28,15 +28,15 @@
     <div class="table2">
       <table id="info">
         <tr>
-          <th>
-            Titles
-          </th>
+          <th> Titles </th>
+          <th> Cast </th>
+          <th> Director </th>
         </tr>
         {% for instance in title_set %}
         <tr>
-          <td>
-            {{ instance.name }}
-          </td>
+          <td> {{ instance.name }} </td>
+          <td>{{ instance.cast }} </td>
+          <td>{{ instance.director }} </td>
         </tr>
         {% endfor %}
       </table>
