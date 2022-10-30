@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
+
+<link rel="stylesheet" href="{% static 'css/watch_later.css' %}">
 
   {% if comb_set %}
     <div class="title">
@@ -23,8 +26,10 @@
             <td> <form method=POST action="{% url 'watchlater' %}">
               {% csrf_token %}
               <input name="wl_id" value="{{ watch_later.title_id }}" hidden="">
+              <div class = "dropdown-content">
               <select onChange="form.submit();" name="dp_pri">
                 <option value="{{ watch_later.priority }}">{{ watch_later.priority }}</option>
+
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -35,6 +40,7 @@
                 <option value="8">8</option>
                 <option value="9">9</option>
                 <option value="10">10</option>
+              </div>
               </select>
             </form>
             </td>
@@ -42,7 +48,7 @@
             <div class="add">
               <form method=POST action="{% url 'watchlater' %}">
                 {% csrf_token %}
-                <button type="submit", name="btn_del", value="{{ watch_later.title_id }}">x</button>
+                <button type="submit", class="del", name="btn_del", value="{{ watch_later.title_id }}">x</button>
               </form>
             </div>
           </td>

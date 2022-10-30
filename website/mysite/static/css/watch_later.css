@@ -1,0 +1,25 @@
+.del {
+    border:0;
+    background: rgb(188,199,216);
+    font-size: 20px;
+    margin-bottom: 6px;
+    text-align: center;
+    outline: none;
+    color: white;
+    border-radius: 40px;
+    transition:0.25px;
+    cursor: pointer;
+    width: 30px;
+    height:20px;
+  }
+  
+  .del:hover {
+    background: rgb(40,55,82);
+  }
+
+  .dropdown-content {
+    position: absolute;
+    margin-left: 27px;
+    margin-top: -15px;
+    width: 40px;
+  }
