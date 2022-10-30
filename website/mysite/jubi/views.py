@@ -42,7 +42,9 @@ def watch_later(request):
             wl_obj.priority = new_pri
             wl_obj.save()
     watch_later_set = WatchLater.objects.filter(user_id=request.user.id)
-    return render(request, 'watch_later.html', {'title_set': watch_later_set})
+    title_set = Titles.objects.filter(id__in=WatchLater.objects.values_list("title_id"))
+    comb_set = zip(watch_later_set, title_set)
+    return render(request, 'watch_later.html', {'comb_set': comb_set})
 
 def registerPage(request):
     if request.user.is_authenticated:

@@ -25,7 +25,7 @@
       </ul>
     </div>
 
-  {% if title_set %}
+  {% if comb_set %}
     <div class="container">
       <div class="table">
         <table id="info">
@@ -35,16 +35,15 @@
             <th> Priority </th>
             <th> Delete </th>
           </tr>
-          {% for instance in title_set %}
+          {% for watch_later, title in comb_set %}
           <tr>
-            <td> {{ instance.title_id }} </td>
-            <td> {{ instance.date_added }} </td>
-            <!-- <td> {{ instance.priority }} </td> -->
+            <td> {{ title.name }} </td>
+            <td> {{ watch_later.date_added }} </td>
             <td> <form method=POST action="{% url 'watchlater' %}">
               {% csrf_token %}
-              <input name="wl_id" value="{{ instance.title_id }}" hidden="">
+              <input name="wl_id" value="{{ watch_later.title_id }}" hidden="">
               <select onChange="form.submit();" name="dp_pri">
-                <option value="{{ instance.priority }}">{{ instance.priority }}</option>
+                <option value="{{ watch_later.priority }}">{{ watch_later.priority }}</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -62,7 +61,7 @@
             <div class="add">
               <form method=POST action="{% url 'watchlater' %}">
                 {% csrf_token %}
-                <button type="submit", name="btn_del", value="{{ instance.title_id }}">x</button>
+                <button type="submit", name="btn_del", value="{{ watch_later.title_id }}">x</button>
               </form>
             </div>
           </td>
