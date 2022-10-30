@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.db.models import Q
 from .models import Titles
+from .models import WatchLater
 
 
 # Create your views here.
@@ -15,3 +16,6 @@ def search(request):
     else:
         return render(request, 'search.html', {})
 
+def watch_later(request):
+    title_set = WatchLater.all()
+    return render(request, 'watch_later.html', {'title_set': title_set})

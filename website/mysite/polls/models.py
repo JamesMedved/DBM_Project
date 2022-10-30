@@ -36,3 +36,12 @@ class Titles(models.Model):
     class Meta:
         managed = False
         db_table = 'titles'
+
+
+class WatchLater(models.Model):
+    title_id = models.IntegerField(primary_key=True)
+    name = models.CharField(max_length=256, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'watch_later'
