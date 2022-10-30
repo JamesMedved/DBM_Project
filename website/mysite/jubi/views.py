@@ -22,7 +22,7 @@ def search(request):
         # Insert into watch later table
         wl_id = request.POST.get('add_wl')
         if wl_id:
-            add_wl = WatchLater(title_id=wl_id, user_id=1, date_added=localdate())
+            add_wl = WatchLater(title_id=wl_id, user_id=request.user.id, date_added=localdate())
             add_wl.save()
     return render(request, 'search.html', {})
 
@@ -33,15 +33,15 @@ def watch_later(request):
         # Delete from watch later table
         del_id = request.POST.get('btn_del')
         if del_id:
-            WatchLater.objects.get(title_id=del_id).delete()
+            WatchLater.objects.get(title_id=del_id, user_id=request.user.id).delete()
         # Update priority of watch later record
         new_pri = request.POST.get('dp_pri')
         wl_id = request.POST.get('wl_id')
         if new_pri:
-            wl_obj = WatchLater.objects.get(title_id=wl_id)
+            wl_obj = WatchLater.objects.get(title_id=wl_id, user_id=request.user.id)
             wl_obj.priority = new_pri
             wl_obj.save()
-    watch_later_set = WatchLater.objects.all()
+    watch_later_set = WatchLater.objects.filter(user_id=request.user.id)
     return render(request, 'watch_later.html', {'title_set': watch_later_set})
 
 def registerPage(request):
