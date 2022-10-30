@@ -58,3 +58,7 @@ body {
 .Already {
     color:white;
 }
+
+.Already a{
+    color: orange;
+}

@@ -40,7 +40,6 @@ class Titles(models.Model):
         managed = False
         db_table = 'titles'
 
-
 class WatchLater(models.Model):
     title_id = models.IntegerField(primary_key=True)
     user_id = models.IntegerField()

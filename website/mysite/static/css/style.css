@@ -1,5 +1,7 @@
 * {
     box-sizing: border-box;
+    margin:0;
+    padding:0;
   }
   
   form.dbm input[type=text] {
@@ -9,6 +11,7 @@
     float: left;
     width: 80%;
     background: #f1f1f1;
+    margin-top:20px;
   }
   
   form.dbm button {
@@ -21,6 +24,7 @@
     border: 1px solid grey;
     border-left: none;
     cursor: pointer;
+    margin-top:20px;
   }
   
   form.dbm button:hover {
@@ -46,7 +50,7 @@
   ul li {
     list-style: none;
     margin-right: 25px;
-    margin-top: 15px;
+    margin-top: 10px;
     font-size: 14px;
   }
 
@@ -69,10 +73,15 @@
     font-size: 40px;
     padding: 10px;
     margin: auto;
+    font-family: Arial, Helvetica, sans-serif; 
   }
 
-
-
+.welcome {
+  text-decoration: none;
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  padding-left:10px;
+}
 
 .container {
   font-family: Arial, Helvetica, sans-serif;
@@ -133,3 +142,15 @@ table tr:hover {background-color: rgb(187, 184, 184);}
 .add input[type="submit"]:hover{
   background: rgb(73,97,132);
   }
+
+.none {
+  padding-top: 50px;
+  width: 400px;
+  font-size: 40px;
+  color: black;
+  font-family: Arial;
+  position: center;
+  height: 80px;
+  margin: auto;
+  margin-top: 60px;
+}
