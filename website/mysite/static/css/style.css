@@ -1,5 +1,6 @@
 body {
   background-image: url('images/jubi_white.png') no-repeat top left; 
+  background: #E2E0E1;
 }
 
 * {
@@ -46,6 +47,7 @@ body {
     font: sans-serif;
     background: rgb(73,97,132);
     padding: 0;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
   }
 
   ul{
