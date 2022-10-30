@@ -33,5 +33,6 @@ def registerPage(request):
     context = {'form':form}
     return render(request, 'register.html', context)
 
-def login(request):
-    return render(request,'login.html')
+def loginPage(request):
+    context = {}
+    return render(request,'login.html', context)
