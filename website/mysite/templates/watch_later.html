@@ -1,31 +1,8 @@
-{% load static %}
+{% extends 'base.html' %}
 
-<!DOCTYPE html>
-<html>
+{% block content %}
 
-<head>
-  <meta charset="utf-8">
-  <title>Medved Schmidt DBM Project</title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
-
-<body>
-
-  <div class ="header">
-    <div class ="nav-links"></div>
-      <ul>
-        <li>Hello, {{request.user}}</li>
-        <li><a href=""><a href="{% url 'search' %}" class="m1-2">Search</a></a></li>
-        <li><a href=""><a href="{% url 'watchlater' %}" class="m1-2">Watch Later</a></li>
-        <li><a href="">Watched</a></li>
-        <li><a href="{% url 'logoutUser' %}">Logout</a></li>
-      </ul>
-    </div>
-
-  {% if title_set %}
+  {% if comb_set %}
     <div class="container">
       <div class="table">
         <table id="info">
@@ -35,16 +12,15 @@
             <th> Priority </th>
             <th> Delete </th>
           </tr>
-          {% for instance in title_set %}
+          {% for watch_later, title in comb_set %}
           <tr>
-            <td> {{ instance.title_id }} </td>
-            <td> {{ instance.date_added }} </td>
-            <!-- <td> {{ instance.priority }} </td> -->
+            <td> {{ title.name }} </td>
+            <td> {{ watch_later.date_added }} </td>
             <td> <form method=POST action="{% url 'watchlater' %}">
               {% csrf_token %}
-              <input name="wl_id" value="{{ instance.title_id }}" hidden="">
+              <input name="wl_id" value="{{ watch_later.title_id }}" hidden="">
               <select onChange="form.submit();" name="dp_pri">
-                <option value="{{ instance.priority }}">{{ instance.priority }}</option>
+                <option value="{{ watch_later.priority }}">{{ watch_later.priority }}</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -62,7 +38,7 @@
             <div class="add">
               <form method=POST action="{% url 'watchlater' %}">
                 {% csrf_token %}
-                <button type="submit", name="btn_del", value="{{ instance.title_id }}">x</button>
+                <button type="submit", name="btn_del", value="{{ watch_later.title_id }}">x</button>
               </form>
             </div>
           </td>
@@ -74,6 +50,5 @@
   {% else %}
     <h2><center>Your watch list is empty. You can add titles from the Search tab.</center></h2>
   {% endif %}
-</body>
 
-</html>
+{% endblock %}
