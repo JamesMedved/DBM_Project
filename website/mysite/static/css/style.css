@@ -1,7 +1,3 @@
-body {
-  background: rgb(255, 255, 255);
-}
-
 * {
     box-sizing: border-box;
   }
@@ -19,7 +15,7 @@ body {
     float: left;
     width: 20%;
     padding: 10px;
-    background: rgb(73,97,132);
+    background: #2196F3;
     color: white;
     font-size: 17px;
     border: 1px solid grey;
@@ -28,7 +24,7 @@ body {
   }
   
   form.dbm button:hover {
-    background: rgb(188,199,216);
+    background: #0b7dda;
   }
 
 .container {
@@ -67,4 +63,3 @@ table th {
   background-color: rgb(40, 55, 82);
   color: white;
 }
-/* hello */
