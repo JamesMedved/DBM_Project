@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
+
+<link rel="stylesheet" href="{% static 'css/watch_later.css' %}">
 
   {% if comb_set %}
     <div class="title">
@@ -42,7 +45,7 @@
             <div class="add">
               <form method=POST action="{% url 'watchlater' %}">
                 {% csrf_token %}
-                <button type="submit", name="btn_del", value="{{ watch_later.title_id }}">x</button>
+                <button type="submit", class="del", name="btn_del", value="{{ watch_later.title_id }}">x</button>
               </form>
             </div>
           </td>
