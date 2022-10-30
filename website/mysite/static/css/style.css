@@ -16,7 +16,7 @@ body {
     float: left;
     width: 80%;
     background: #f1f1f1;
-    margin-top:20px;
+    margin-top:80px;
     position: center;
     translate: -30px;
   }
@@ -31,7 +31,7 @@ body {
     border: 1px solid grey;
     border-left: none;
     cursor: pointer;
-    margin-top:20px;
+    margin-top:80px;
     position: center;
     translate: -30px;
   }
@@ -85,7 +85,6 @@ body {
     font-size: 18px;
     padding: 10px;
     font: Arial; 
-    margin-bottom: 60px;
   }
 
   .title h1 {
@@ -108,7 +107,7 @@ body {
 .container {
   font-family: Arial, Helvetica, sans-serif;
   position:absolute;
-  margin-top:100px;
+  margin-top:200px;
 }
 
 /* Add a think border around the whole table. */
