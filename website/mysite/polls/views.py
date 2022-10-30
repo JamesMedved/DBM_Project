@@ -3,7 +3,9 @@ from django.shortcuts import render
 from django.db.models import Q
 from .models import Titles
 from .models import WatchLater
+from django.contrib.auth.forms import UserCreationForm
 
+from .forms import CreateUserForm
 
 # Create your views here.
 def search(request):
@@ -19,3 +21,17 @@ def search(request):
 def watch_later(request):
     title_set = WatchLater.objects.all()
     return render(request, 'watch_later.html', {'title_set': title_set})
+
+def registerPage(request):
+    form = CreateUserForm()
+
+    if request.method == 'POST':
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+
+    context = {'form':form}
+    return render(request, 'register.html', context)
+
+def login(request):
+    return render(request,'login.html')

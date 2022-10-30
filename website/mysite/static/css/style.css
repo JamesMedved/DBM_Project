@@ -15,7 +15,7 @@
     float: left;
     width: 20%;
     padding: 10px;
-    background: #2196F3;
+    background: rgb(73,97,132);
     color: white;
     font-size: 17px;
     border: 1px solid grey;
@@ -24,8 +24,55 @@
   }
   
   form.dbm button:hover {
-    background: #0b7dda;
+    background: rgb(40,55,82);
   }
+
+  .header {
+    width: 100%;
+    float: left;
+    height: 50px;
+    font-family: Arial, Helvetica, sans-serif;
+    background: rgb(73,97,132);
+    padding: 0;
+  }
+
+  ul{
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  ul li {
+    list-style: none;
+    margin-right: 25px;
+    margin-top: 15px;
+    font-size: 14px;
+  }
+
+  ul li a{
+    text-decoration: none;
+    color: white;
+    font-family: Arial;
+    font-weight: bold;
+    transition: 0.4s ease-in-out;
+  }
+
+  ul li a:hover{
+    color: orange;
+  }
+
+  .title {
+    position: center;
+    text-align: center;
+    color: black;
+    font-size: 40px;
+    padding: 10px;
+    margin: auto;
+  }
+
+
+
 
 .container {
   font-family: Arial, Helvetica, sans-serif;
@@ -33,10 +80,12 @@
   margin-top:100px;
 }
 
+/* Add a think border around the whole table. */
 table, th, td { 
   border: 1px solid black;
 }
 
+/* Date styles for table. */
 table td {
   padding-top: 10px;
   vertical-align: middle;
@@ -46,34 +95,31 @@ table td {
   text-overflow: ellipsis;
 }
 
+/* Header Column Style settings */
 table th {
   padding-top: 10px;
   padding-bottom: 10px;
   text-align: left;
-  background-color: rgb(73,97,132);
+  background-color: rgb(40,55,82);
   color: white;
 }
 
+/* Makes every other entry a different shade for better readability. */
 table tr:nth-child(even) {
-background-color: #f2f2f2;
+background-color: #e0dfdf;
 }
 
+/* Row changes color when you hover over it. */
 table tr:hover {background-color: rgb(187, 184, 184);}
 
-table th {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  text-align: left;
-  background-color: rgb(40, 55, 82);
-  color: white;
-}
-
+/* Watch Later Button style */
 .add input[type="submit"]{
   border:0;
   background: rgb(188,199,216);
-  font-size: 25px;
+  font-size: 20px;
   display: black;
-  margin: 20px auto;
+  margin-left: 25px;
+  margin-bottom: 10px;
   text-align: center;
   width: 40px;
   padding: 10px 10px;
@@ -82,5 +128,8 @@ table th {
   border-radius: 30px;
   transition:0.25px;
   cursor: pointer;
-  position: center;
 }
+
+.add input[type="submit"]:hover{
+  background: rgb(73,97,132);
+  }

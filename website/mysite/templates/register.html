@@ -1,0 +1,42 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <body>
+        <head>
+            <meta charset="utf-8">
+            <title>Register form</title>
+            <meta name="description" content="">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="stylesheet" href="{% static 'css/register.css' %}">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        </head>
+
+        <form method="POST" action="">
+            {% csrf_token %}
+            <div class = "container">
+                <h1>
+                    Register
+                </h1>
+                <div class = "input-group">
+                    <input type="text" placeholder="Username..." name="username">
+
+                    <input type="text" placeholder="First Name" name="first_name">
+
+                    <input type="text" placeholder="Last Name" name="last_name">
+
+                    <input type="password" placeholder="Password" name="password1">
+
+                    <input type="password" placeholder="Confirm Password" name="password2">
+
+                    <input class="btn login_btn" type="submit"  name="Register Account">
+
+                    <div class ="Already">
+                        Already have an account? <a href="{% url 'login' %}" class="m1-2">Login</a>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </body>
+</html>

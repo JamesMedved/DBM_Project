@@ -14,9 +14,19 @@
 
 <body>
 
-  <h2>
-    <center>Search Netflix, Amazon, Hulu, and Disney+</center>
-  </h2>
+  <div class ="header">
+    <div class ="nav-links"></div>
+      <ul>
+        <li><a href="#">Watch Later</a></li>
+        <li><a href="#">Watched</a></li>
+        <li><a href="#">Login</a></li>
+        <li><a href="#">Sign Up</a></li>
+      </ul>
+    </div>
+  <div class="title">
+    Search Netflix, Amazon, Hulu, and Disney+
+  </div>
+</div>
 
   <form class="dbm" method=POST action="{% url 'search' %}" style="margin:auto;max-width:300px">
     {% csrf_token %}
@@ -40,7 +50,7 @@
           <td> {{ instance.director }} </td>
           <td>
           <div class="add">
-            <input type="submit" name="" value="+">
+            <input type="submit" name="watch later" value="+">
           </div>
         </td>
         </tr>
