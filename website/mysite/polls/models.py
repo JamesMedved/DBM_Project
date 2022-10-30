@@ -40,8 +40,23 @@ class Titles(models.Model):
 
 class WatchLater(models.Model):
     title_id = models.IntegerField(primary_key=True)
-    name = models.CharField(max_length=256, blank=True, null=True)
+    user_id = models.IntegerField()
+    date_added = models.DateTimeField(blank=True, null=True)
+    priority = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'watch_later'
+        unique_together = (('title_id', 'user_id'),)
+
+
+class Watched(models.Model):
+    title_id = models.IntegerField(primary_key=True)
+    user_id = models.IntegerField()
+    rating = models.IntegerField(blank=True, null=True)
+    finished = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'watched'
+        unique_together = (('title_id', 'user_id'),)
