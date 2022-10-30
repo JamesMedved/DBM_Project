@@ -20,7 +20,7 @@
 
   <form class="dbm" method=POST action="{% url 'search' %}" style="margin:auto;max-width:300px">
     {% csrf_token %}
-    <input type="text" placeholder="Titles, People, Genres, etc. " name="searched">
+    <input type="text" placeholder="Titles, People, Genres, etc. " name="search">
     <button type="submit"><i class="fa fa-search"></i></button>
   </form>
 
@@ -38,10 +38,6 @@
             {{ instance.name }}
           </td>
         </tr>
-        {% empty %}
-          {% if search %}
-            <h2><center>No Results Found!</center></h2>
-          {% endif %}
         {% endfor %}
       </table>
     </div>

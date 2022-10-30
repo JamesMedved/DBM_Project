@@ -19,7 +19,7 @@ body {
     float: left;
     width: 20%;
     padding: 10px;
-    background: #2196F3;
+    background: rgb(73,97,132);
     color: white;
     font-size: 17px;
     border: 1px solid grey;
@@ -28,7 +28,7 @@ body {
   }
   
   form.dbm button:hover {
-    background: #0b7dda;
+    background: rgb(188,199,216);
   }
 
 .container2 {
@@ -51,7 +51,7 @@ table th {
   padding-top: 10px;
   padding-bottom: 10px;
   text-align: left;
-  background-color: #04AA6D;
+  background-color: rgb(73,97,132);
   color: white;
 }
 
@@ -65,6 +65,6 @@ table th {
   padding-top: 10px;
   padding-bottom: 10px;
   text-align: left;
-  background-color: #04AA6D;
+  background-color: rgb(40, 55, 82);
   color: white;
 }
