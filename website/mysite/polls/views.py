@@ -17,5 +17,5 @@ def search(request):
         return render(request, 'search.html', {})
 
 def watch_later(request):
-    title_set = WatchLater.all()
+    title_set = WatchLater.objects.all()
     return render(request, 'watch_later.html', {'title_set': title_set})

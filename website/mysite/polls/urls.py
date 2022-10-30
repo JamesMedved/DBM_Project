@@ -5,6 +5,6 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('search', views.search, name='search'),
-    path('watchlater', views.watch_later, name='watchlater'),
+    path('search/', views.search, name='search'),
+    path('watchlater/', views.watch_later, name='watchlater'),
 ]
