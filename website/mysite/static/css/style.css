@@ -1,3 +1,7 @@
+body {
+  background-image: url('images/jubi_white.png') no-repeat top left; 
+}
+
 * {
     box-sizing: border-box;
     margin:0;
@@ -12,6 +16,8 @@
     width: 80%;
     background: #f1f1f1;
     margin-top:20px;
+    position: center;
+    translate: -30px;
   }
   
   form.dbm button {
@@ -25,6 +31,8 @@
     border-left: none;
     cursor: pointer;
     margin-top:20px;
+    position: center;
+    translate: -30px;
   }
   
   form.dbm button:hover {
@@ -34,8 +42,8 @@
   .header {
     width: 100%;
     float: left;
-    height: 50px;
-    font-family: Arial, Helvetica, sans-serif;
+    height: 85px;
+    font: sans-serif;
     background: rgb(73,97,132);
     padding: 0;
   }
@@ -50,14 +58,14 @@
   ul li {
     list-style: none;
     margin-right: 25px;
-    margin-top: 10px;
-    font-size: 14px;
+    margin-top: -40px;
+    font-size: 20px;
   }
 
   ul li a{
     text-decoration: none;
     color: white;
-    font-family: Arial;
+    font: sans-serif;
     font-weight: bold;
     transition: 0.4s ease-in-out;
   }
@@ -67,20 +75,31 @@
   }
 
   .title {
+    height: 120px;
     position: center;
     text-align: center;
     color: black;
-    font-size: 40px;
+    font-size: 18px;
     padding: 10px;
     margin: auto;
-    font-family: Arial, Helvetica, sans-serif; 
+    font: Arial; 
+  }
+
+  .title h1 {
+    height: 50px;
+    padding-top: 10px;
+    margin: auto;
   }
 
 .welcome {
   text-decoration: none;
-  font-family: Arial, Helvetica, sans-serif;
+  font: sans-serif;
   color: white;
-  padding-left:10px;
+  padding-right:20px;
+  padding-top: 10px;
+  float:right;
+  font-weight: bold;
+  font-size: 20px;
 }
 
 .container {
