@@ -1,9 +1,12 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.db.models import Q
 from .models import Titles
 from .models import WatchLater
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
+
 
 from .forms import CreateUserForm
 
@@ -29,10 +32,25 @@ def registerPage(request):
         form = CreateUserForm(request.POST)
         if form.is_valid():
             form.save()
+            return redirect('loginPage')
 
     context = {'form':form}
     return render(request, 'register.html', context)
 
 def loginPage(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('search')
+        else:
+            messages.info(request, 'Username or password is incorrect')
     context = {}
     return render(request,'login.html', context)
+
+def logoutUser(request):
+    logout(request)
+    return redirect('loginPage')

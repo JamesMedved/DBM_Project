@@ -31,6 +31,8 @@
 
                     <input class="btn login_btn" type="submit"  name="Register Account">
 
+                    {{form.errors}}
+                    
                     <div class ="Already">
                         Already have an account? <a href="{% url 'loginPage' %}" class="m1-2">Login</a>
                     </div>

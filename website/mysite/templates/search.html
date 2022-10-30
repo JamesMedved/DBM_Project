@@ -17,10 +17,10 @@
   <div class ="header">
     <div class ="nav-links"></div>
       <ul>
+        <li>Hello, {{request.user}}</li>
         <li><a href="#">Watch Later</a></li>
         <li><a href="#">Watched</a></li>
-        <li><a href="#">Login</a></li>
-        <li><a href="#">Sign Up</a></li>
+        <li><a href="{% url 'logoutUser' %}">Logout</a></li>
       </ul>
     </div>
   <div class="title">
@@ -28,7 +28,7 @@
   </div>
 </div>
 
-  <form class="dbm" method=POST action="{% url 'search' %}" style="margin:auto;max-width:300px">
+  <form class="dbm" method=POST action="" style="margin:auto;max-width:300px">
     {% csrf_token %}
     <input type="text" placeholder="Titles, People, Genres, etc. " name="search">
     <button type="submit"><i class="fa fa-search"></i></button>
