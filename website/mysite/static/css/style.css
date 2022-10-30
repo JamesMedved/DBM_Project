@@ -48,6 +48,7 @@ body {
     background: rgb(73,97,132);
     padding: 0;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    margin-bottom: 40px;
   }
 
   ul{
@@ -83,8 +84,8 @@ body {
     color: black;
     font-size: 18px;
     padding: 10px;
-    margin: auto;
     font: Arial; 
+    margin-bottom: 60px;
   }
 
   .title h1 {
@@ -119,6 +120,7 @@ table, th, td {
 table td {
   padding-top: 10px;
   vertical-align: middle;
+  min-width: 100px;
   max-width: 250px;
   white-space: nowrap;
   overflow: hidden;
