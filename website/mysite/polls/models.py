@@ -33,6 +33,9 @@ class Titles(models.Model):
     cast = models.CharField(max_length=2048, blank=True, null=True)
     director = models.CharField(max_length=1024, blank=True, null=True)
 
+    def __str__(self):
+        return str(self.id)
+        
     class Meta:
         managed = False
         db_table = 'titles'

@@ -23,16 +23,7 @@
         <li><a href="#">Sign Up</a></li>
       </ul>
     </div>
-  <div class="title">
-    Search Netflix, Amazon, Hulu, and Disney+
-  </div>
 </div>
-
-  <form class="dbm" method=POST action="{% url 'search' %}" style="margin:auto;max-width:300px">
-    {% csrf_token %}
-    <input type="text" placeholder="Title, Cast, Director, etc. " name="search">
-    <button type="submit"><i class="fa fa-search"></i></button>
-  </form>
 
   <div class="container">
     <div class="table">
@@ -41,29 +32,24 @@
           <th> Titles </th>
           <th> Cast </th>
           <th> Director </th>
-          <th> Watch Later </th>
+          <th> Remove </th>
         </tr>
         {% for instance in title_set %}
         <tr>
-          <td> {{ instance.name }} </td>
-          <td> {{ instance.cast }} </td>
-          <td> {{ instance.director }} </td>
+          <td> {{ instance.title_id }} </td>
+          <!-- <td> {{ instance.cast }} </td>
+          <td> {{ instance.director }} </td> -->
           <td>
           <div class="add">
-            <form method=POST action="{% url 'search' %}">
+            <form method=POST action="{% url 'watchlater' %}">
               {% csrf_token %}
-              <button type="submit", name="add_wl", value="{{ instance.id }}">+</button>
+              <button type="submit", name="del_wl", value="{{ instance.title_id }}">x</button>
             </form>
           </div>
         </td>
         </tr>
         {% empty %}
-          {% if search %}
             <h2><center>No Results Found!</center></h2>
-          {% endif %}
-          {% if title_id %}
-            <h2><center>{{ title_id }}</center></h2>
-          {% endif %}
         {% endfor %}
       </table>
     </div>

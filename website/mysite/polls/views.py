@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import render
 from django.db.models import Q
 from .models import Titles
 from .models import WatchLater
@@ -20,8 +20,12 @@ def search(request):
     return render(request, 'search.html', {})
 
 def watch_later(request):
-    title_set = WatchLater.objects.all()
-    return render(request, 'watch_later.html', {'title_set': title_set})
+    # title_set = Titles.objects.filter(id=watch_later_set)
+    if request.method == "POST":
+        # Delete from watch later table
+        WatchLater.objects.get(title_id=request.POST.get('del_wl')).delete()
+    watch_later_set = WatchLater.objects.all()
+    return render(request, 'watch_later.html', {'title_set': watch_later_set})
 
 def registerPage(request):
     form = CreateUserForm()
