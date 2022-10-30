@@ -18,6 +18,7 @@
     <div class ="nav-links"></div>
       <ul>
         <li>Hello, {{request.user}}</li>
+        <li><a href="#"><a href="{% url 'search' %}" class="m1-2">Search</a></a></li>
         <li><a href="#"><a href="{% url 'watchlater' %}" class="m1-2">Watch Later</a></li>
         <li><a href="#">Watched</a></li>
         <li><a href="{% url 'logoutUser' %}">Logout</a></li>
@@ -34,38 +35,39 @@
     <button type="submit"><i class="fa fa-search"></i></button>
   </form>
 
-  <div class="container">
-    <div class="table">
-      <table id="info">
-        <tr>
-          <th> Titles </th>
-          <th> Cast </th>
-          <th> Director </th>
-          <th> Watch Later </th>
-        </tr>
-        {% for instance in title_set %}
-        <tr>
-          <td> {{ instance.name }} </td>
-          <td> {{ instance.cast }} </td>
-          <td> {{ instance.director }} </td>
-          <td>
-          <div class="add">
-            <form method=POST action="{% url 'search' %}">
-              {% csrf_token %}
-              <button type="submit", name="add_wl", value="{{ instance.id }}">+</button>
-            </form>
-          </div>
-        </td>
-        </tr>
-        {% empty %}
-          {% if search %}
-            <h2><center>No Results Found!</center></h2>
-          {% endif %}
-        {% endfor %}
-      </table>
+  {% if title_set %}
+    <div class="container">
+      <div class="table">
+        <table id="info">
+          <tr>
+            <th> Titles </th>
+            <th> Cast </th>
+            <th> Director </th>
+            <th> Watch Later </th>
+          </tr>
+          {% for instance in title_set %}
+          <tr>
+            <td> {{ instance.name }} </td>
+            <td> {{ instance.cast }} </td>
+            <td> {{ instance.director }} </td>
+            <td>
+            <div class="add">
+              <form method=POST action="{% url 'search' %}">
+                {% csrf_token %}
+                <button type="submit", name="add_wl", value="{{ instance.id }}">+</button>
+              </form>
+            </div>
+          </td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
     </div>
-  </div>
-
+  {% else %}
+    {% if search %}
+      <h2><center>No Results Found!</center></h2>
+    {% endif %}
+  {% endif %}
 </body>
 
 </html>

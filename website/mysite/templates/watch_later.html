@@ -17,44 +17,63 @@
   <div class ="header">
     <div class ="nav-links"></div>
       <ul>
+        <li>Hello, {{request.user}}</li>
         <li><a href="#"><a href="{% url 'search' %}" class="m1-2">Search</a></a></li>
+        <li><a href="#"><a href="{% url 'watchlater' %}" class="m1-2">Watch Later</a></li>
         <li><a href="#">Watched</a></li>
-        <li><a href="#">Login</a></li>
-        <li><a href="#">Sign Up</a></li>
+        <li><a href="{% url 'logoutUser' %}">Logout</a></li>
       </ul>
     </div>
-</div>
 
-  <div class="container">
-    <div class="table">
-      <table id="info">
-        <tr>
-          <th> Titles </th>
-          <th> Cast </th>
-          <th> Director </th>
-          <th> Remove </th>
-        </tr>
-        {% for instance in title_set %}
-        <tr>
-          <td> {{ instance.title_id }} </td>
-          <!-- <td> {{ instance.cast }} </td>
-          <td> {{ instance.director }} </td> -->
-          <td>
-          <div class="add">
-            <form method=POST action="{% url 'watchlater' %}">
+  {% if title_set %}
+    <div class="container">
+      <div class="table">
+        <table id="info">
+          <tr>
+            <th> Titles </th>
+            <th> Date Added </th>
+            <th> Priority </th>
+            <th> Delete </th>
+          </tr>
+          {% for instance in title_set %}
+          <tr>
+            <td> {{ instance.title_id }} </td>
+            <td> {{ instance.date_added }} </td>
+            <!-- <td> {{ instance.priority }} </td> -->
+            <td> <form method=POST action="{% url 'watchlater' %}">
               {% csrf_token %}
-              <button type="submit", name="del_wl", value="{{ instance.title_id }}">x</button>
+              <input name="wl_id" value="{{ instance.title_id }}" hidden="">
+              <select onChange="form.submit();" name="dp_pri">
+                <option value="{{ instance.priority }}">{{ instance.priority }}</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
             </form>
-          </div>
-        </td>
-        </tr>
-        {% empty %}
-            <h2><center>No Results Found!</center></h2>
-        {% endfor %}
-      </table>
+            </td>
+            <td>
+            <div class="add">
+              <form method=POST action="{% url 'watchlater' %}">
+                {% csrf_token %}
+                <button type="submit", name="btn_del", value="{{ instance.title_id }}">x</button>
+              </form>
+            </div>
+          </td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
     </div>
-  </div>
-
+  {% else %}
+    <h2><center>Your watch list is empty. You can add titles from the Search tab.</center></h2>
+  {% endif %}
 </body>
 
 </html>

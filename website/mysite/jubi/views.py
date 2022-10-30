@@ -8,6 +8,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import CreateUserForm
+from django.utils.timezone import localdate, now
 
 # Create your views here.
 @login_required(login_url='loginPage')
@@ -19,8 +20,10 @@ def search(request):
             title_set = Titles.objects.filter(Q(name__icontains=search) | Q(cast__icontains=search) | Q(director__icontains=search))
             return render(request, 'search.html', {'title_set': title_set, 'search':search})
         # Insert into watch later table
-        add_wl = WatchLater(title_id=request.POST.get('add_wl'), user_id=1)
-        add_wl.save()
+        wl_id = request.POST.get('add_wl')
+        if wl_id:
+            add_wl = WatchLater(title_id=wl_id, user_id=1, date_added=localdate())
+            add_wl.save()
     return render(request, 'search.html', {})
 
 @login_required(login_url='loginPage')
@@ -28,7 +31,16 @@ def watch_later(request):
     # title_set = Titles.objects.filter(id=watch_later_set)
     if request.method == "POST":
         # Delete from watch later table
-        WatchLater.objects.get(title_id=request.POST.get('del_wl')).delete()
+        del_id = request.POST.get('btn_del')
+        if del_id:
+            WatchLater.objects.get(title_id=del_id).delete()
+        # Update priority of watch later record
+        new_pri = request.POST.get('dp_pri')
+        wl_id = request.POST.get('wl_id')
+        if new_pri:
+            wl_obj = WatchLater.objects.get(title_id=wl_id)
+            wl_obj.priority = new_pri
+            wl_obj.save()
     watch_later_set = WatchLater.objects.all()
     return render(request, 'watch_later.html', {'title_set': watch_later_set})
 
