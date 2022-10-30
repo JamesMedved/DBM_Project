@@ -38,6 +38,10 @@
           <td>{{ instance.cast }} </td>
           <td>{{ instance.director }} </td>
         </tr>
+        {% empty %}
+          {% if search %}
+            <h2><center>No Results Found!</center></h2>
+          {% endif %}
         {% endfor %}
       </table>
     </div>
