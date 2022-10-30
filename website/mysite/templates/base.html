@@ -1,0 +1,38 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Medved Schmidt DBM Project</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+  <div class="header">
+    <img src="{% static 'images/jubi_white.png' %}" alt="Logo" />
+    <div class="welcome">
+      Hello, {{request.user}}
+    </div>
+    <div class="nav-links"></div>
+    <ul>
+      <li><a href=""><a href="{% url 'search' %}" class="m1-2">Search</a></a></li>
+      <li><a href=""><a href="{% url 'watchlater' %}" class="m1-2">Watch Later</a></li>
+      <li><a href="">Watched</a></li>
+      <li><a href="{% url 'logoutUser' %}">Logout</a></li>
+    </ul>
+    </div>
+  </div>
+
+  {% block content %}
+
+  {% endblock %}
+
+</body>
+
+</html>
