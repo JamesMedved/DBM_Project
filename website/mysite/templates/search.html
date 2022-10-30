@@ -2,27 +2,47 @@
 
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Medved Schmidt DBM Project</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="{% static 'css/style.css' %}">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    </head>
-    <body>
 
-        <h2><center>Search Netflix, Amazon, Hulu, and Disney+</center></h2>
-        
-        <form class="dbm" method=POST action="{% url 'search' %}" style="margin:auto;max-width:300px">
-          {% csrf_token %}
-          <input type="text" placeholder="Titles, People, Genres, etc. " name="searched">
-          <button type="submit"><i class="fa fa-search"></i></button>
-        </form>
+<head>
+  <meta charset="utf-8">
+  <title>Medved Schmidt DBM Project</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
 
+<body>
+
+  <h2>
+    <center>Search Netflix, Amazon, Hulu, and Disney+</center>
+  </h2>
+
+  <form class="dbm" method=POST action="{% url 'search' %}" style="margin:auto;max-width:300px">
+    {% csrf_token %}
+    <input type="text" placeholder="Titles, People, Genres, etc. " name="searched">
+    <button type="submit"><i class="fa fa-search"></i></button>
+  </form>
+
+  <div class="container2">
+    <div class="table2">
+      <table id="info">
+        <tr>
+          <th>
+            Titles
+          </th>
+        </tr>
         {% for instance in title_set %}
-          <p>{{ instance.name }} </p>
+        <tr>
+          <td>
+            {{ instance.name }}
+          </td>
+        </tr>
         {% endfor %}
+      </table>
+    </div>
+  </div>
 
-        </body>
+</body>
+
 </html>

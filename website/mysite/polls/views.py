@@ -1,16 +1,17 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from .models import Titles
 
 # Create your views here.
 def homepage(request):
-    return render(request, 'homepage.html')
+    return render(request, 'searh.html')
 
 def login(request):
     return render(request, 'login.html')
     
 def search(request):
     # Grab search input
-    searched = request.POST['searched']
+    searched = request.POST.get('searched', '')
     # Search for title if input is not empty
     if request.method == "POST" and searched:
         title_set = Titles.objects.filter(name__icontains=searched)
