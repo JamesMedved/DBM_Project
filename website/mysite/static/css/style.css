@@ -46,9 +46,10 @@ body {
     height: 85px;
     font-family: Arial;
     background: rgb(73,97,132);
-    padding: 0;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
     margin-bottom: 40px;
+    padding-bottom: 90px;
+    padding-top: 5px;
   }
 
   ul{
@@ -108,9 +109,11 @@ body {
   font-family: Arial;
   position:absolute;
   margin-top:200px;
+  margin-left: 50px;
+  padding-bottom: 50px;
 }
 
-/* Add a think border around the whole table. */
+/* Add a thick border around the whole table. */
 table, th, td { 
   border: 1px solid black;
 }
@@ -124,6 +127,8 @@ table td {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 /* Header Column Style settings */
@@ -133,11 +138,13 @@ table th {
   text-align: left;
   background-color: rgb(40,55,82);
   color: white;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 /* Makes every other entry a different shade for better readability. */
 table tr:nth-child(even) {
-background-color: #e0dfdf;
+background-color: white;
 }
 
 /* Row changes color when you hover over it. */
