@@ -8,8 +8,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import CreateUserForm
-from django.utils.timezone import localdate, now
-import datetime
+from datetime import date
 
 # Create your views here.
 @login_required(login_url='loginPage')
@@ -23,7 +22,7 @@ def search(request):
         # Insert into watch later table
         wl_id = request.POST.get('add_wl')
         if wl_id:
-            add_wl = WatchLater(title_id=wl_id, user_id=request.user.id, date_added=localdate())
+            add_wl = WatchLater(title_id=wl_id, user_id=request.user.id, date_added=date.today())
             add_wl.save()
     return render(request, 'search.html', {})
 
@@ -42,10 +41,12 @@ def watch_later(request):
             wl_obj = WatchLater.objects.get(title_id=wl_id, user_id=request.user.id)
             wl_obj.priority = new_pri
             wl_obj.save()
+            
+    # TODO: Fix this later
     watch_later_set = WatchLater.objects.filter(user_id=request.user.id)
-    title_set = Titles.objects.filter(id__in=WatchLater.objects.values_list("title_id"))
+    title_set = Titles.objects.filter(id__in=watch_later_set.values_list("title_id"))
     comb_set = zip(watch_later_set, title_set)
-    return render(request, 'watch_later.html', {'comb_set': comb_set})
+    return render(request, 'watch_later.html', {'watch_later_set': watch_later_set,'comb_set': comb_set})
 
 def registerPage(request):
     if request.user.is_authenticated:
