@@ -33,15 +33,17 @@ class Titles(models.Model):
     cast = models.CharField(max_length=2048, blank=True, null=True)
     director = models.CharField(max_length=1024, blank=True, null=True)
 
+    def __str__(self):
+        return str(self.id)
+        
     class Meta:
         managed = False
         db_table = 'titles'
 
-
 class WatchLater(models.Model):
     title_id = models.IntegerField(primary_key=True)
     user_id = models.IntegerField()
-    date_added = models.DateTimeField(blank=True, null=True)
+    date_added = models.DateField(blank=True, null=True)
     priority = models.IntegerField(blank=True, null=True)
 
     class Meta:
@@ -54,7 +56,7 @@ class Watched(models.Model):
     title_id = models.IntegerField(primary_key=True)
     user_id = models.IntegerField()
     rating = models.IntegerField(blank=True, null=True)
-    finished = models.DateTimeField(blank=True, null=True)
+    finished = models.DateField(blank=True, null=True)
 
     class Meta:
         managed = False

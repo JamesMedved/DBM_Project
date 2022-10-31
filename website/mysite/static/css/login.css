@@ -1,0 +1,71 @@
+body {
+    margin:0;
+    padding:0;
+    height: 100%;
+    background: #E2E0E1;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
+.container {
+    width:300px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
+    background: rgb(73,97,132);
+    text-align:left;
+    border: 1px solid black;
+    border-radius: 5px;
+    top:50%;
+    left:50%;
+    position: absolute;
+    transform:translate(-50%, -50%);
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    font-family: Arial;
+}
+
+.container h1{
+    color: White;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-align: center;
+}
+
+.input-group input {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.input-group input[type="text"], input[type="password"] {
+    height: 20px;
+}
+
+.login_btn {
+    width: 100%;
+    background: rgb(40,55,82) !important;
+    color: white !important;
+    border: 1px;
+}
+
+.login_btn:focus {
+    box-shadow: none !important;
+    outline: 0px !important;
+}
+
+.input-group {
+    padding: 0 2rem;
+}
+
+.Already {
+    color:white;
+}
+
+.Already a{
+    color: orange;
+}
+
+.flash-message {
+    color:red;
+}

@@ -1,65 +1,185 @@
+body {
+  background-image: url('images/jubi_white.png') no-repeat top left; 
+  background: #E2E0E1;
+}
+
 * {
     box-sizing: border-box;
+    margin:0;
+    padding:0;
   }
   
-  form.dbm input[type=text] {
+  .search input[type=text] {
     padding: 10px;
     font-size: 17px;
     border: 1px solid grey;
     float: left;
     width: 80%;
     background: #f1f1f1;
+    margin-top:80px;
+    position: center;
+    translate: -30px;
   }
   
-  form.dbm button {
+  .search button {
     float: left;
     width: 20%;
     padding: 10px;
-    background: #2196F3;
+    background: rgb(73,97,132);
     color: white;
     font-size: 17px;
     border: 1px solid grey;
     border-left: none;
     cursor: pointer;
+    margin-top:80px;
+    position: center;
+    translate: -30px;
   }
   
-  form.dbm button:hover {
-    background: #0b7dda;
+  .search button:hover {
+    background: rgb(40,55,82);
   }
 
-.container {
-  font-family: Arial, Helvetica, sans-serif;
-  position:absolute;
-  margin-top:100px;
+  .header {
+    width: 100%;
+    float: left;
+    height: 85px;
+    font-family: Arial;
+    background: rgb(73,97,132);
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    margin-bottom: 40px;
+    padding-bottom: 90px;
+    padding-top: 5px;
+  }
+
+  ul{
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  ul li {
+    list-style: none;
+    margin-right: 25px;
+    margin-top: -40px;
+    font-size: 20px;
+  }
+
+  ul li a{
+    text-decoration: none;
+    color: white;
+    font-family: Arial;
+    font-weight: bold;
+    transition: 0.4s ease-in-out;
+  }
+
+  ul li a:hover{
+    color: orange;
+  }
+
+  .title {
+    height: 120px;
+    position: center;
+    text-align: center;
+    color: black;
+    font-size: 18px;
+    padding: 10px;
+    font-family: Arial;
+  }
+
+  .title h1 {
+    height: 50px;
+    padding-top: 10px;
+    margin: auto;
+  }
+
+.welcome {
+  text-decoration: none;
+  font-family: Arial;
+  color: white;
+  padding-right:20px;
+  padding-top: 10px;
+  float:right;
+  font-weight: bold;
+  font-size: 20px;
 }
 
+.container {
+  font-family: Arial;
+  position:absolute;
+  margin-top:200px;
+  margin-left: 50px;
+  padding-bottom: 50px;
+}
+
+/* Add a thick border around the whole table. */
 table, th, td { 
   border: 1px solid black;
 }
 
+/* Date styles for table. */
 table td {
   padding-top: 10px;
   vertical-align: middle;
+  min-width: 100px;
+  max-width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
+/* Header Column Style settings */
 table th {
   padding-top: 10px;
   padding-bottom: 10px;
   text-align: left;
-  background-color: rgb(73,97,132);
+  background-color: rgb(40,55,82);
   color: white;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
+/* Makes every other entry a different shade for better readability. */
 table tr:nth-child(even) {
-background-color: #f2f2f2;
+background-color: white;
 }
 
+/* Row changes color when you hover over it. */
 table tr:hover {background-color: rgb(187, 184, 184);}
 
-table th {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  text-align: left;
-  background-color: rgb(40, 55, 82);
+/* Watch Later Button style */
+.add {
+  border:0;
+  background: rgb(188,199,216);
+  font-size: 20px;
+  margin-left: 30px;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 30px;
+  outline: none;
   color: white;
+  border-radius: 40px;
+  transition:0.25px;
+  cursor: pointer;
+}
+
+.add:hover {
+  background: rgb(40,55,82);
+}
+
+.none {
+  padding-top: 50px;
+  width: 400px;
+  font-size: 24px;
+  color: black;
+  font-family: Arial;
+  position: center;
+  text-align: center;
+  height: 80px;
+  margin: auto;
+  margin-top: 120px;
+  font-weight: bold;
 }

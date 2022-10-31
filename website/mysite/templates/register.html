@@ -5,10 +5,10 @@
     <body>
         <head>
             <meta charset="utf-8">
-            <title>Login form</title>
+            <title>Register form</title>
             <meta name="description" content="">
             <meta name="viewport" content="width=device-width, initial-scale=1">
-            <link rel="stylesheet" href="{% static 'css/login.css' %}">
+            <link rel="stylesheet" href="{% static 'css/register.css' %}">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         </head>
 
@@ -16,23 +16,25 @@
             {% csrf_token %}
             <div class = "container">
                 <h1>
-                    Log In
+                    Register
                 </h1>
                 <div class = "input-group">
                     <input type="text" placeholder="Username..." name="username">
 
-                    <input type="password" placeholder="Password..." name="password">
+                    <input type="text" placeholder="First Name" name="first_name">
 
-                    <input class="btn login_btn" type="submit" name="Log In" value="Log In">
+                    <input type="text" placeholder="Last Name" name="last_name">
 
-                    <div class="flash-message">
-                        {% for message in messages %}
-                        <p> {{message}}</p>
-                        {% endfor%}
-                    </div>
+                    <input type="password" placeholder="Password" name="password1">
 
+                    <input type="password" placeholder="Confirm Password" name="password2">
+
+                    <input class="btn login_btn" type="submit"  name="Register Account">
+
+                    {{form.errors}}
+                    
                     <div class ="Already">
-                        Don't have an account? <a href="{% url 'registerPage' %}" class="m1-2">Sign Up</a>
+                        Already have an account? <a href="{% url 'loginPage' %}" class="m1-2">Login</a>
                     </div>
                 </div>
             </div>
