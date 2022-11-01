@@ -8,7 +8,13 @@ body {
     margin:0;
     padding:0;
   }
-  
+
+  .check-box {
+    font-family: Arial;
+    align: center;
+    padding-top: 200px;
+  }
+
   .search input[type=text] {
     padding: 10px;
     font-size: 17px;
@@ -104,8 +110,9 @@ body {
 
 .container {
   font-family: Arial;
-  position:absolute;
-  margin-top:70px;
+  position: absolute;
+  margin-top: 14%;
+  margin-left: 1%;
 }
 
 /* Add a think border around the whole table. */
@@ -113,11 +120,15 @@ table, th, td {
   border: 1px solid black;
 }
 
+th, td {
+  padding: 4px;
+}
+
 /* Date styles for table. */
-table td {
+td {
   padding-top: 10px;
   vertical-align: middle;
-  min-width: 100px;
+  min-width: 50px;
   max-width: 250px;
   white-space: nowrap;
   overflow: hidden;
@@ -125,7 +136,7 @@ table td {
 }
 
 /* Header Column Style settings */
-table th {
+th {
   padding-top: 10px;
   padding-bottom: 10px;
   text-align: left;
@@ -135,7 +146,7 @@ table th {
 
 /* Makes every other entry a different shade for better readability. */
 table tr:nth-child(even) {
-background-color: #e0dfdf;
+  background-color: #cecacc;
 }
 
 /* Row changes color when you hover over it. */
@@ -173,12 +184,4 @@ table tr:hover {background-color: rgb(187, 184, 184);}
   margin: auto;
   margin-top: 120px;
   font-weight: bold;
-}
-
-.check-box {
-  position:relative;
-  width: 300px;
-  margin: auto;
-  padding-top: 150px;
-  font-family: Arial;
 }
