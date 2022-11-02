@@ -45,12 +45,10 @@
             </form>
             </td>
             <td>
-            <div class="add">
               <form method=POST action="{% url 'watchlater' %}">
                 {% csrf_token %}
-                <button type="submit", class="del", name="btn_del", value="{{ watch_later.title_id }}">x</button>
+                <button type="submit", class="del-btn", name="btn_del", value="{{ watch_later.title_id }}">x</button>
               </form>
-            </div>
           </td>
           </tr>
           {% endfor %}
