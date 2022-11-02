@@ -25,9 +25,11 @@
     <div class="table">
       <table id="info">
         <tr>
-          <th> Titles </th>
+          <th> Title </th>
           <th> Cast </th>
           <th> Director </th>
+          <th> Duration </th>
+          <th> Description </th>
           <th> Watch Later </th>
         </tr>
         {% for instance in title_set %}
@@ -35,10 +37,22 @@
           <td> {{ instance.name }} </td>
           <td> {{ instance.cast }} </td>
           <td> {{ instance.director }} </td>
+          <td> {{ instance.duration}}
+          {% if instance.type == "Movie" %}
+            mins</td>
+          {% else %}
+            {% if instance.duration == 1 %}
+              season
+            {% else %}
+              seasons
+            {% endif %}
+          {% endif %}
+        </td>
+          <td> {{ instance.description }} </td>
           <td>
               <form method=POST action="{% url 'search' %}">
                 {% csrf_token %}
-                <button type="submit", class ="add" name="add_wl" , value="{{ instance.id }}">+</button>
+                <button type="submit", class ="btn" name="add_wl" , value="{{ instance.id }}">+</button>
               </form>
           </td>
         </tr>
@@ -47,9 +61,9 @@
     </div>
   </div>
   {% else %}
-  {% if search %}
-  <div class="none">Your search "{{ search }}" did not have any matches.</div>
-  {% endif %}
+    {% if search %}
+      <div class="none">Your search "{{ search }}" did not have any matches.</div>
+    {% endif %}
   {% endif %}
 
 {% endblock %}

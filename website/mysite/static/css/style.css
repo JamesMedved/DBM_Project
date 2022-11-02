@@ -158,13 +158,15 @@ table tr:nth-child(even) {
 table tr:hover {background-color: rgb(187, 184, 184);}
 
 /* Watch Later Button style */
-.add {
+.btn {
   border:0;
   background: rgb(188,199,216);
   font-size: 20px;
-  margin-left: 30px;
-  margin-bottom: 10px;
+  margin: auto;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 30px;
   outline: none;
   color: white;
@@ -173,7 +175,7 @@ table tr:hover {background-color: rgb(187, 184, 184);}
   cursor: pointer;
 }
 
-.add:hover {
+.btn:hover {
   background: rgb(40,55,82);
 }
 
@@ -189,4 +191,11 @@ table tr:hover {background-color: rgb(187, 184, 184);}
   margin: auto;
   margin-top: 120px;
   font-weight: bold;
+}
+
+.dropdown-content {
+  position: absolute;
+  margin-left: 20%px;
+  margin-top: -12px;
+  width: 40px;
 }
