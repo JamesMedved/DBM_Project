@@ -112,8 +112,10 @@ body {
 .container {
   font-family: Arial;
   position: absolute;
-  margin-top: 14%;
-  margin-left: 1%;
+  margin-top: 12%;
+  margin-left: 2%;
+  margin-right: 2%;
+  box-sizing: 100%;
 }
 
 /* Add a thick border around the whole table. */
@@ -125,12 +127,12 @@ th, td {
   padding: 4px;
 }
 
-/* Date styles for table. */
+/* Data styles for table. */
 td {
   padding-top: 10px;
   vertical-align: middle;
   min-width: 50px;
-  max-width: 250px;
+  max-width: 400px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -142,11 +144,11 @@ td {
 th {
   padding-top: 10px;
   padding-bottom: 10px;
-  text-align: left;
-  background-color: rgb(40,55,82);
-  color: white;
   padding-left: 5px;
   padding-right: 5px;
+  text-align: left;
+  background-color: rgb(73,97,132);
+  color: white;
 }
 
 /* Makes every other entry a different shade for better readability. */

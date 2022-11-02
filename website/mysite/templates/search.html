@@ -48,7 +48,7 @@
             {% endif %}
           {% endif %}
         </td>
-          <td> {{ instance.description }} </td>
+          <div class="tdd"><td> {{ instance.description }} </td></div> 
           <td>
               <form method=POST action="{% url 'search' %}">
                 {% csrf_token %}
