@@ -201,7 +201,7 @@
   font-weight: 400;
   color: #fff;
   white-space: nowrap;
-  padding-top: 10%;
+  align-items: center;
 }
 
 .sidebar .profile #log_out{

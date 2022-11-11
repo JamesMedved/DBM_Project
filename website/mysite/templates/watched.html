@@ -1,12 +1,12 @@
 {% extends 'nav.html' %}
 
 {% block content %}
-  <script>
-    let form = document.getElementById('watched').addEventListener('click', function(){
-        event.preventDefault();
-    });
-  </script>
   <section class="home-section">
+    <script>
+      let form = document.getElementById('watched').addEventListener('click', function(){
+          event.preventDefault();
+      });
+    </script>
     <div class="text">Watched</div>
   
     {% if watched_set %}

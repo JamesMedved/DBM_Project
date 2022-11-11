@@ -39,6 +39,8 @@ def search(request):
             add_w.save()
     return render(request, 'search.html', {})
 
+
+# TODO: Fix so the page isn't reloaded every time
 def update_watched(request):
     if request.method == "POST":
         # Insert into watch later table
@@ -50,6 +52,7 @@ def update_watched(request):
         if w_id:
             add_w = Watched(title_id = w_id, user_id=request.user.id)
             add_w.save()
+        return render(request, 'home.html', {})
 
 @login_required(login_url='loginPage')
 def watch_later(request):
