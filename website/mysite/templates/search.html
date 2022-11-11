@@ -10,35 +10,26 @@
         <table id="info">
           <tr>
             <th> Title </th>
-            <th> Cast </th>
-            <th> Director </th>
-            <th> Duration </th>
-            <th> Description </th>
+            <th> Found On </th>
             <th> Watch Later </th>
+            <th> Watched </th>
           </tr>
           {% for instance in title_set %}
           <tr>
-            <td> {{ instance.name }} </td>
-            <td> {{ instance.cast }} </td>
-            <td> {{ instance.director }} </td>
-            <td> {{ instance.duration}}
-            {% if instance.type == "Movie" %}
-              mins</td>
-            {% else %}
-              {% if instance.duration == 1 %}
-                season
-              {% else %}
-                seasons
-              {% endif %}
-            {% endif %}
-          </td>
-            <div class="tdd"><td> {{ instance.description }} </td></div> 
+            <td> {{ instance.title }} </td>
+            <td> {{ instance.provider }} </td>
             <td>
                 <form method=POST action="{% url 'search' %}">
                   {% csrf_token %}
-                  <button type="submit", class ="btn" name="add_wl" , value="{{ instance.id }}">+</button>
+                  <button type="submit", class ="btn" name="add_wl" , value="{{ instance.title_id }}">+</button>
                 </form>
             </td>
+            <td>
+              <form method=POST action="{% url 'search' %}">
+                {% csrf_token %}
+                <button type="submit", class ="btn" name="add_w" , value="{{ instance.title_id }}">+</button>
+              </form>
+          </td>
           </tr>
           {% endfor %}
         </table>

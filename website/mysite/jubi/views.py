@@ -1,8 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.db.models import Q
-from .models import Titles
-from .models import WatchLater
+from .models import Titles, Streaming, WatchLater, Watched
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
@@ -17,7 +16,7 @@ def home(request):
     # Search for title if input is not empty
     if request.method == "POST":
         if search:
-            title_set = Titles.objects.filter(Q(name__icontains=search) | Q(cast__icontains=search) | Q(director__icontains=search))
+            title_set = Streaming.objects.filter(Q(title__icontains=search))
             return render(request, 'search.html', {'title_set': title_set, 'search':search})
     return render(request, 'home.html', {})
 
@@ -27,13 +26,17 @@ def search(request):
     # Search for title if input is not empty
     if request.method == "POST":
         if search:
-            title_set = Titles.objects.filter(Q(name__icontains=search) | Q(cast__icontains=search) | Q(director__icontains=search))
+            title_set = Streaming.objects.filter(Q(name__icontains=search))
             return render(request, 'search.html', {'title_set': title_set, 'search':search})
         # Insert into watch later table
         wl_id = request.POST.get('add_wl')
+        w_id = request.POST.get('add_w')
         if wl_id:
             add_wl = WatchLater(title_id=wl_id, user_id=request.user.id, date_added=date.today())
             add_wl.save()
+        if w_id:
+            add_w = Watched(title_id = w_id, user_id=request.user.id)
+            add_w.save()
     return render(request, 'search.html', {})
 
 @login_required(login_url='loginPage')
@@ -93,3 +96,17 @@ def loginPage(request):
 def logoutUser(request):
     logout(request)
     return redirect('loginPage')
+
+@login_required(login_url='loginPage')
+def watched(request):
+    # title_set = Titles.objects.filter(id=watch_later_set)
+    if request.method == "POST":
+        # Delete from watch later table
+        del_id = request.POST.get('btn_del')
+        if del_id:
+            Watched.objects.get(title_id=del_id, user_id=request.user.id).delete()
+
+    watched_set = Watched.objects.filter(user_id=request.user.id)
+    title_set = Titles.objects.filter(id__in=watched_set.values_list("title_id"))
+    comb_set = zip(watched_set, title_set)
+    return render(request, 'watched.html', {'watched_set': watched_set,'comb_set': comb_set})
