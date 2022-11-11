@@ -19,10 +19,12 @@
             <td> {{ instance.title }} </td>
             <td> {{ instance.provider }} </td>
             <td>
+              <div class="wl_add">
                 <form method=POST action="{% url 'search' %}">
                   {% csrf_token %}
                   <button type="submit", class ="btn" name="add_wl" , value="{{ instance.title_id }}">+</button>
                 </form>
+              </div>
             </td>
             <td>
               <form method=POST action="{% url 'search' %}">
