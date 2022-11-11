@@ -1,0 +1,45 @@
+{% extends 'nav.html' %}
+
+{% block content %}
+  <section class="home-section">
+    <div class="text">Watched</div>
+  
+    {% if watched_set %}
+      <div class="title">
+        <h1>Watched</h1>
+      </div>
+
+      <div class="container">
+        <div class="table">
+          <table id="info">
+            <tr>
+              <th> Title </th>
+              <th> Delete </th>
+            </tr>
+            {% for watched, title in comb_set %}
+            <tr>
+              <td> {{ title.name }} </td>
+              <td> <form method=POST action="{% url 'watched' %}">
+                {% csrf_token %}
+                <input name="w_id" value="{{ watched.title_id }}" hidden="">
+              </form>
+              </td>
+              <td>
+                <form method=POST action="{% url 'watched' %}">
+                  {% csrf_token %}
+                  <button type="submit", class="btn", name="btn_del", value="{{ watched.title_id }}">x</button>
+                </form>
+            </td>
+            </tr>
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+    {% else %}
+      <div class="title">
+        <h1>Your Watched List is Empty</h1>
+      </div>
+    {% endif %}
+  </section>
+
+{% endblock %}
