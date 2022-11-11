@@ -3,5 +3,10 @@
 {% block content %}
     <section class="home-section">
         <div class="text">Home</div>
+        <script>
+            let form = document.getElementById('home').addEventListener('click', function(){
+                event.preventDefault();
+            });
+        </script>
     </section>
 {% endblock %}

@@ -1,6 +1,11 @@
 {% extends 'nav.html' %}
 
 {% block content %}
+  <script>
+    let form = document.getElementById('watchLater').addEventListener('click', function(){
+        event.preventDefault();
+    });
+  </script>
   <section class="home-section">
     <div class="text">Watch Later</div>
   

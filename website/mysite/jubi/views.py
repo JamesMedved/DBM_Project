@@ -39,6 +39,18 @@ def search(request):
             add_w.save()
     return render(request, 'search.html', {})
 
+def update_watched(request):
+    if request.method == "POST":
+        # Insert into watch later table
+        wl_id = request.POST.get('add_wl')
+        w_id = request.POST.get('add_w')
+        if wl_id:
+            add_wl = WatchLater(title_id=wl_id, user_id=request.user.id, date_added=date.today())
+            add_wl.save()
+        if w_id:
+            add_w = Watched(title_id = w_id, user_id=request.user.id)
+            add_w.save()
+
 @login_required(login_url='loginPage')
 def watch_later(request):
     # title_set = Titles.objects.filter(id=watch_later_set)
