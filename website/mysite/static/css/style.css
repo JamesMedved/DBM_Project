@@ -112,8 +112,10 @@ body {
 .container {
   font-family: Arial;
   position: absolute;
-  margin-top: 14%;
-  margin-left: 1%;
+  margin-top: 12%;
+  margin-left: 2%;
+  margin-right: 2%;
+  box-sizing: 100%;
 }
 
 /* Add a thick border around the whole table. */
@@ -125,12 +127,12 @@ th, td {
   padding: 4px;
 }
 
-/* Date styles for table. */
+/* Data styles for table. */
 td {
   padding-top: 10px;
   vertical-align: middle;
   min-width: 50px;
-  max-width: 250px;
+  max-width: 400px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -142,11 +144,11 @@ td {
 th {
   padding-top: 10px;
   padding-bottom: 10px;
-  text-align: left;
-  background-color: rgb(40,55,82);
-  color: white;
   padding-left: 5px;
   padding-right: 5px;
+  text-align: left;
+  background-color: rgb(73,97,132);
+  color: white;
 }
 
 /* Makes every other entry a different shade for better readability. */
@@ -158,13 +160,15 @@ table tr:nth-child(even) {
 table tr:hover {background-color: rgb(187, 184, 184);}
 
 /* Watch Later Button style */
-.add {
+.btn {
   border:0;
   background: rgb(188,199,216);
   font-size: 20px;
-  margin-left: 30px;
-  margin-bottom: 10px;
+  margin: auto;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 30px;
   outline: none;
   color: white;
@@ -173,7 +177,7 @@ table tr:hover {background-color: rgb(187, 184, 184);}
   cursor: pointer;
 }
 
-.add:hover {
+.btn:hover {
   background: rgb(40,55,82);
 }
 
@@ -189,4 +193,11 @@ table tr:hover {background-color: rgb(187, 184, 184);}
   margin: auto;
   margin-top: 120px;
   font-weight: bold;
+}
+
+.dropdown-content {
+  position: absolute;
+  margin-left: 20%px;
+  margin-top: -12px;
+  width: 40px;
 }

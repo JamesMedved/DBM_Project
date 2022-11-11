@@ -14,7 +14,7 @@
       <div class="table">
         <table id="info">
           <tr>
-            <th> Titles </th>
+            <th> Title </th>
             <th> Date Added </th>
             <th> Priority </th>
             <th> Delete </th>
@@ -45,12 +45,10 @@
             </form>
             </td>
             <td>
-            <div class="add">
               <form method=POST action="{% url 'watchlater' %}">
                 {% csrf_token %}
-                <button type="submit", class="del", name="btn_del", value="{{ watch_later.title_id }}">x</button>
+                <button type="submit", class="btn", name="btn_del", value="{{ watch_later.title_id }}">x</button>
               </form>
-            </div>
           </td>
           </tr>
           {% endfor %}
