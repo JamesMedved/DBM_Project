@@ -12,6 +12,16 @@ from datetime import date
 
 # Create your views here.
 @login_required(login_url='loginPage')
+def home(request):
+    search = request.POST.get('search')
+    # Search for title if input is not empty
+    if request.method == "POST":
+        if search:
+            title_set = Titles.objects.filter(Q(name__icontains=search) | Q(cast__icontains=search) | Q(director__icontains=search))
+            return render(request, 'search.html', {'title_set': title_set, 'search':search})
+    return render(request, 'home.html', {})
+
+@login_required(login_url='loginPage')
 def search(request):
     search = request.POST.get('search')
     # Search for title if input is not empty

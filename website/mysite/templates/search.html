@@ -1,24 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-  <div class="title">
-    <h1>Search Netflix, Amazon, Hulu, and Disney+</h1>
-    <form class="search" method=POST action="" style="margin:auto;max-width:300px">
-      {% csrf_token %}
-      <input type="text" placeholder="Title, Cast, Director, etc. " name="search">
-      <button type="submit"><i class="fa fa-search"></i></button>
-    </form>
-    <div class="check-box">
-      <form action="" method="POST">
-        <input type="checkbox" name="Netflix" value="Netflix"/> Netflix
-        <input type="checkbox" name="Prime" value="Prime"/> Prime
-        <input type="checkbox" name="Hulu" value="Hulu"/> Hulu
-        <input type="checkbox" name="Disney+" value="disney+"/> Disney+
-      </form>
-    </div>
-  </div>
-
+  <!-- <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head> -->
 
   {% if title_set %}
   <div class="container">
