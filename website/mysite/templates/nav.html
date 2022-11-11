@@ -22,13 +22,9 @@
         <form method=POST action="">
           {% csrf_token %}
           <i class='bx bx-search' type="submit"></i>
-          <input type="text" placeholder="Search..." name="search">
-          <!-- <button type="submit"><i class="fa fa-search"></i></button> -->
+          <input type="text" placeholder="Search..." name="search" required>
           <span class="tooltip">Search</span>
         </form>
-        <!-- <i class='bx bx-search' ></i>
-        <input type="text" placeholder="Search...">
-        <span class="tooltip">Search</span> -->
       </li>
       <li>
        <a href="{% url 'home' %}">
@@ -40,9 +36,9 @@
      <li>
         <a href="{% url 'watchlater' %}">
           <i class='bx bx-movie' ></i>
-          <span class="links_name">My List</span>
+          <span class="links_name">Watch Later</span>
         </a>
-        <span class="tooltip">My List</span>
+        <span class="tooltip">Watch Later</span>
     </li>
      <li>
         <a href="#">
@@ -69,6 +65,8 @@
      </li>
     </ul>
   </div>
+
+
   <script>
   let sidebar = document.querySelector(".sidebar");
   let closeBtn = document.querySelector("#btn");
@@ -92,6 +90,13 @@
      closeBtn.classList.replace("bx-menu-alt-right","bx-menu");//replacing the iocns class
    }
   }
+
+  document.addEventListener('invalid', (function () {
+  return function (e) {
+    e.preventDefault();
+    document.getElementById("search").focus();
+  };
+  })(), true);
   </script>
 
   {% block content %}

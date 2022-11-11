@@ -1,64 +1,64 @@
-{% extends 'base.html' %}
-{% load static %}
+{% extends 'nav.html' %}
 
 {% block content %}
-
-<link rel="stylesheet" href="{% static 'css/watch_later.css' %}">
-
-  {% if watch_later_set %}
-    <div class="title">
-      <h1>Watch Later</h1>
-    </div>
-
-    <div class="container">
-      <div class="table">
-        <table id="info">
-          <tr>
-            <th> Title </th>
-            <th> Date Added </th>
-            <th> Priority </th>
-            <th> Delete </th>
-          </tr>
-          {% for watch_later, title in comb_set %}
-          <tr>
-            <td> {{ title.name }} </td>
-            <td> {{ watch_later.date_added }} </td>
-            <td> <form method=POST action="{% url 'watchlater' %}">
-              {% csrf_token %}
-              <input name="wl_id" value="{{ watch_later.title_id }}" hidden="">
-              <div class = "dropdown-content">
-              <select onChange="form.submit();" name="dp_pri">
-                <option value="{{ watch_later.priority }}">{{ watch_later.priority }}</option>
-
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-              </div>
-              </select>
-            </form>
-            </td>
-            <td>
-              <form method=POST action="{% url 'watchlater' %}">
-                {% csrf_token %}
-                <button type="submit", class="btn", name="btn_del", value="{{ watch_later.title_id }}">x</button>
-              </form>
-          </td>
-          </tr>
-          {% endfor %}
-        </table>
+  <section class="home-section">
+    <div class="text">Watch Later</div>
+  
+    {% if watch_later_set %}
+      <div class="title">
+        <h1>Watch Later</h1>
       </div>
-    </div>
-  {% else %}
-    <div class="title">
-      <h1>Your Watch Later List is Empty</h1>
-    </div>
-  {% endif %}
+
+      <div class="container">
+        <div class="table">
+          <table id="info">
+            <tr>
+              <th> Title </th>
+              <th> Date Added </th>
+              <th> Priority </th>
+              <th> Delete </th>
+            </tr>
+            {% for watch_later, title in comb_set %}
+            <tr>
+              <td> {{ title.name }} </td>
+              <td> {{ watch_later.date_added }} </td>
+              <td> <form method=POST action="{% url 'watchlater' %}">
+                {% csrf_token %}
+                <input name="wl_id" value="{{ watch_later.title_id }}" hidden="">
+                <div class = "dropdown-content">
+                <select onChange="form.submit();" name="dp_pri">
+                  <option value="{{ watch_later.priority }}">{{ watch_later.priority }}</option>
+
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                </div>
+                </select>
+              </form>
+              </td>
+              <td>
+                <form method=POST action="{% url 'watchlater' %}">
+                  {% csrf_token %}
+                  <button type="submit", class="btn", name="btn_del", value="{{ watch_later.title_id }}">x</button>
+                </form>
+            </td>
+            </tr>
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+    {% else %}
+      <div class="title">
+        <h1>Your Watch Later List is Empty</h1>
+      </div>
+    {% endif %}
+  </section>
 
 {% endblock %}
