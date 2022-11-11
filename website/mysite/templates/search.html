@@ -19,10 +19,18 @@
             <td> {{ instance.title }} </td>
             <td> {{ instance.provider }} </td>
             <td>
-                <form method=POST action="{% url 'search' %}">
-                  {% csrf_token %}
-                  <button type="submit", class ="btn" name="add_wl" , value="{{ instance.title_id }}">+</button>
-                </form>
+                <button type="submit", class ="btn" name="add_wl">+</button>
+                <script>
+                  let form = document.getElementsByName('add_wl').addEventListener('submit', function(){
+                      event.preventDefault();
+                  });
+                  $.ajax({
+                    type: 'POST',
+                    url: "{% url 'udw' %}",
+                    data: "{{ instance.title_id }}",
+                    datatype: "int"
+                  })
+                </script>
             </td>
             <td>
               <form method=POST action="{% url 'search' %}">
