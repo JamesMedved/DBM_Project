@@ -196,16 +196,14 @@
   border-radius: 6px;
   margin-right: 10px;
 }
-.sidebar li.profile .name,
-.sidebar li.profile .job{
+.sidebar li.profile .name{
   font-size: 15px;
   font-weight: 400;
   color: #fff;
   white-space: nowrap;
+  padding-top: 10%;
 }
-.sidebar li.profile .job{
-  font-size: 12px;
-}
+
 .sidebar .profile #log_out{
   position: absolute;
   top: 50%;

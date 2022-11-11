@@ -28,40 +28,41 @@
       </li>
       <li>
        <a href="{% url 'home' %}">
-         <i class='bx bx-home' ></i>
+         <i class='bx bx-home'></i>
          <span class="links_name">Home</span>
        </a>
        <span class="tooltip">Home</span>
      </li>
      <li>
         <a href="{% url 'watchlater' %}">
-          <i class='bx bx-movie' ></i>
+          <i class='bx bx-movie' id="watchLater"></i>
           <span class="links_name">Watch Later</span>
         </a>
         <span class="tooltip">Watch Later</span>
     </li>
      <li>
         <a href="#">
-          <i class='bx bxs-binoculars' ></i>
+          <i class='bx bxs-binoculars' id="watched"></i>
           <span class="links_name">Watched</span>
         </a>
         <span class="tooltip">Watched</span>
       </li>
      <li>
        <a href="#">
-         <i class='bx bx-cog' ></i>
+         <i class='bx bx-cog'></i>
          <span class="links_name">Settings</span>
        </a>
        <span class="tooltip">Settings</span>
      </li>
      <li class="profile">
          <div class="profile-details">
-           <!--<img src="profile.jpg" alt="profileImg">-->
-           <div class="name_job">
-             <div class="name">Hello, </div>
+           <div class="name">
+             <div class="name">Hello, {{request.user.first_name}}</div>
            </div>
          </div>
-         <i class='bx bx-log-out' id="log_out" ></i>
+         <a href="{% url 'logoutUser' %}">
+          <i class='bx bx-log-out' id="log_out"></i>
+        </a>
      </li>
     </ul>
   </div>
