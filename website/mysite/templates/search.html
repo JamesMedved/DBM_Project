@@ -16,7 +16,12 @@
           </tr>
           {% for instance in title_set %}
           <tr>
-            <td> {{ instance.title }} </td>
+            <td>
+              <form method=POST action="{% url 'title' %}">
+                {% csrf_token %}
+                <button type="submit", name="title", value="{{ instance.title_id }}">{{ instance.title }}</a>
+              </form>
+              </td>
             <td> {{ instance.provider }} </td>
             <td>
               <form method=POST action="{% url 'udw' %}">

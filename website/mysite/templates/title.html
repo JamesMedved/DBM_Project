@@ -1,0 +1,30 @@
+{% extends 'nav.html' %}
+
+{% block content %}
+  <section class="home-section">
+    {% for tinstance in title_set %}
+        <div class="text">{{ tinstance.name }}</div>
+        <div>{{ tinstance.description }}</div>
+        <div>{{ tinstance.type }} 
+            {% if tinstance.type == 'Movie' %}
+                ({{ tinstance.duration }} min)
+            {% else %}
+                {% if tinstance.duration == 1 %}
+                    ({{ tinstance.duration }} season)
+                {% else %}
+                    ({{ tinstance.duration }} seasons)
+                {% endif %}
+            {% endif %}</div>
+        <div>Country: {{ tinstance.country }}</div>
+        <div>Release Year: {{ tinstance.release_year }}</div>
+        <div>Director: {{ tinstance.director }}</div>
+        <div>Cast: {{ tinstance.cast }}</div>
+        <div>Available Here: 
+            {% for sinstance in streaming_set %}
+                {{ sinstance.provider }}, 
+            {% endfor %}
+        </div>
+    {% endfor %}
+  </section>
+
+{% endblock %}

@@ -21,6 +21,16 @@ def home(request):
     return render(request, 'home.html', {})
 
 @login_required(login_url='loginPage')
+def title(request):
+    title = request.POST.get('title')
+    # Search for title if input is not empty
+    if request.method == "POST":
+        if title:
+            title_set = Titles.objects.filter(Q(id=title))
+            streaming_set = Streaming.objects.filter(Q(title_id=title))
+            return render(request, 'title.html', {'title_set': title_set, 'streaming_set': streaming_set})
+
+@login_required(login_url='loginPage')
 def search(request):
     search = request.POST.get('search')
     # Search for title if input is not empty
