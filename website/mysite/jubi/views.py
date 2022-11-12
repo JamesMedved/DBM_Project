@@ -130,6 +130,13 @@ def watched(request):
         del_id = request.POST.get('btn_del')
         if del_id:
             Watched.objects.get(title_id=del_id, user_id=request.user.id).delete()
+        # Update priority of watch later record
+        new_rat = request.POST.get('dp_rat')
+        w_id = request.POST.get('w_id')
+        if new_rat:
+            wl_obj = Watched.objects.get(title_id=w_id, user_id=request.user.id)
+            wl_obj.rating = new_rat
+            wl_obj.save()
 
     watched_set = Watched.objects.filter(user_id=request.user.id)
     title_set = Titles.objects.filter(id__in=watched_set.values_list("title_id"))

@@ -15,6 +15,7 @@
           <table id="info">
             <tr>
               <th> Title </th>
+              <th> Rating </th>
               <th> Delete </th>
             </tr>
             {% for watched, title in comb_set %}
@@ -23,6 +24,17 @@
               <td> <form method=POST action="{% url 'watched' %}">
                 {% csrf_token %}
                 <input name="w_id" value="{{ watched.title_id }}" hidden="">
+                <div class = "dropdown-content">
+                <select onChange="form.submit();" name="dp_rat">
+                  <option value="{{ watched.rating }}">{{ watched.rating }}</option>
+
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </div>
+                </select>
               </form>
               </td>
               <td>
