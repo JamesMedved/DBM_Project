@@ -9,7 +9,7 @@
   </script>
     <div class="text">Watch Later</div>
   
-    {% if watch_later_set %}
+    {% if tset %}
       <div class="container">
         <div class="table">
           <table id="info">
@@ -19,16 +19,21 @@
               <th> Priority </th>
               <th> Delete </th>
             </tr>
-            {% for watch_later, title in comb_set %}
+            {% for title in tset%}
             <tr>
-              <td> {{ title.name }} </td>
-              <td> {{ watch_later.date_added }} </td>
+              <td>
+                <form method=POST action="{% url 'title' %}">
+                  {% csrf_token %}
+                  <button type="submit", name="title", value="{{ title.title_id }}">{{ title.title.name }}</a>
+                </form>
+              </td>
+              <td> {{ title.date_added }} </td>
               <td> <form method=POST action="{% url 'watchlater' %}">
                 {% csrf_token %}
-                <input name="wl_id" value="{{ watch_later.title_id }}" hidden="">
+                <input name="wl_id" value="{{ title.title_id }}" hidden="">
                 <div class = "dropdown-content">
                 <select onChange="form.submit();" name="dp_pri">
-                  <option value="{{ watch_later.priority }}">{{ watch_later.priority }}</option>
+                  <option value="{{ title.priority }}">{{ title.priority }}</option>
 
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -47,7 +52,7 @@
               <td>
                 <form method=POST action="{% url 'watchlater' %}">
                   {% csrf_token %}
-                  <button type="submit", class="btn", name="btn_del", value="{{ watch_later.title_id }}">x</button>
+                  <button type="submit", class="btn", name="btn_del", value="{{ title.title_id }}">x</button>
                 </form>
             </td>
             </tr>

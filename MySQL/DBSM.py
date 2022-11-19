@@ -1,5 +1,8 @@
 import mysql.connector
 from mysql.connector import Error
+import requests
+from bs4 import BeautifulSoup
+import re
 
 
 class DBSM:
@@ -27,4 +30,34 @@ class DBSM:
         # Basic query build up
         self.cursor.execute(query)
         return self.cursor.fetchall()
-            
+
+    def add_img_link(self):
+        titles = self.send_query("select * from titles")
+        for title in titles:
+            type = 'Movie'
+            name = title[1]
+            name = re.sub('\s+', '_', name)
+            name = re.sub(':', '', name)
+            name = re.sub('&', 'and', name)
+            name = name.lower()
+            print(title[1])
+            print(name)
+
+            if type == 'Movie':
+                rt_link = f"https://www.rottentomatoes.com/m/{name}"
+            else:
+                rt_link = f"https://www.rottentomatoes.com/tv/{name}"
+
+            try:
+                page = requests.get(rt_link)
+                soup = BeautifulSoup(page.text, 'lxml')
+                img_link = soup.find_all('img', class_="posterImage")[0]['src']
+                print(img_link)
+            except:
+                pass
+
+
+
+
+db = DBSM()
+db.add_img_link()

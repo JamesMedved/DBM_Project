@@ -3,13 +3,13 @@
 {% block content %}
   <section class="home-section">
     <script>
-      let form = document.getElementById('watched').addEventListener('click', function(){
+      let form = document.getElementById('title').addEventListener('click', function(){
           event.preventDefault();
       });
     </script>
     <div class="text">Watched</div>
   
-    {% if watched_set %}
+    {% if tset %}
       <div class="container">
         <div class="table">
           <table id="info">
@@ -18,15 +18,20 @@
               <th> Rating </th>
               <th> Delete </th>
             </tr>
-            {% for watched, title in comb_set %}
+            {% for title in tset %}
             <tr>
-              <td> {{ title.name }} </td>
-              <td> <form method=POST action="{% url 'watched' %}">
+              <td>
+                <form method=POST action="{% url 'title' %}">
+                  {% csrf_token %}
+                  <button type="submit", name="title", value="{{ title.title_id }}">{{ title.title.name }}</a>
+                </form>
+              </td>
+              <td> <form method=POST action="{% url 'title' %}">
                 {% csrf_token %}
-                <input name="w_id" value="{{ watched.title_id }}" hidden="">
+                <input name="w_id" value="{{ title.title_id }}" hidden="">
                 <div class = "dropdown-content">
                 <select onChange="form.submit();" name="dp_rat">
-                  <option value="{{ watched.rating }}">{{ watched.rating }}</option>
+                  <option value="{{ title.rating }}">{{ title.rating }}</option>
 
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -40,7 +45,7 @@
               <td>
                 <form method=POST action="{% url 'watched' %}">
                   {% csrf_token %}
-                  <button type="submit", class="btn", name="btn_del", value="{{ watched.title_id }}">x</button>
+                  <button type="submit", class="btn", name="btn_del", value="{{ title.title_id }}">x</button>
                 </form>
             </td>
             </tr>
@@ -50,7 +55,7 @@
       </div>
     {% else %}
       <div class="title">
-        <h1>Your Watched List is Empty</h1>
+        <h1>Your title List is Empty</h1>
       </div>
     {% endif %}
   </section>

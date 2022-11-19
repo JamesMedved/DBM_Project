@@ -2,9 +2,9 @@
 
 {% block content %}
   <section class="home-section">
-    <div class="text">Search</div>
+    <div class="text">You searched for "{{ search }}"</div>
 
-    {% if title_set %}
+    {% if tset %}
     <div class="container">
       <div class="table">
         <table id="info">
@@ -14,25 +14,25 @@
             <th> Watch Later </th>
             <th> Watched </th>
           </tr>
-          {% for instance in title_set %}
+          {% for title in tset %}
           <tr>
             <td>
               <form method=POST action="{% url 'title' %}">
                 {% csrf_token %}
-                <button type="submit", name="title", value="{{ instance.title_id }}">{{ instance.title }}</a>
+                <button type="submit", name="title", value="{{ title.title_id }}">{{ title.title.name }}</a>
               </form>
               </td>
-            <td> {{ instance.provider }} </td>
+            <td> {{ title.provider }} </td>
             <td>
-              <form method=POST action="{% url 'udw' %}">
+              <form method=POST action="{% url 'search' %}">
                 {% csrf_token %}
-                <button type="submit", class ="btn" name="add_wl" , value="{{ instance.title_id }}">+</button>
+                <button type="submit", class ="btn" name="add_wl" , value="{{ title.title_id }}">+</button>
               </form>
             </td>
             <td>
-              <form method=POST action="{% url 'udw' %}">
+              <form method=POST action="{% url 'search' %}">
                 {% csrf_token %}
-                <button type="submit", class ="btn" name="add_w" , value="{{ instance.title_id }}">+</button>
+                <button type="submit", class ="btn" name="add_w" , value="{{ title.title_id }}">+</button>
               </form>
           </td>
           </tr>

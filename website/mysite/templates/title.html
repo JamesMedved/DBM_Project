@@ -2,29 +2,28 @@
 
 {% block content %}
   <section class="home-section">
-    {% for tinstance in title_set %}
-        <div class="text">{{ tinstance.name }}</div>
-        <div>{{ tinstance.description }}</div>
-        <div>{{ tinstance.type }} 
-            {% if tinstance.type == 'Movie' %}
-                ({{ tinstance.duration }} min)
+        <div class="text">{{ title.title.name }}</div>
+        <div>{{ title.title.description }}</div>
+        <div>{{ title.title.type }} 
+            {% if title.title.type == 'Movie' %}
+                ({{ title.title.duration }} min)
             {% else %}
-                {% if tinstance.duration == 1 %}
-                    ({{ tinstance.duration }} season)
+                {% if title.title.duration == 1 %}
+                    ({{ title.title.duration }} season)
                 {% else %}
-                    ({{ tinstance.duration }} seasons)
+                    ({{ title.title.duration }} seasons)
                 {% endif %}
             {% endif %}</div>
-        <div>Country: {{ tinstance.country }}</div>
-        <div>Release Year: {{ tinstance.release_year }}</div>
-        <div>Director: {{ tinstance.director }}</div>
-        <div>Cast: {{ tinstance.cast }}</div>
+        <div>Country: {{ title.title.country }}</div>
+        <div>Release Year: {{ title.title.release_year }}</div>
+        <div>Director: {{ title.title.director }}</div>
+        <div>Cast: {{ title.title.cast }}</div>
         <div>Available Here: 
-            {% for sinstance in streaming_set %}
-                {{ sinstance.provider }}, 
-            {% endfor %}
+        {% for title in tset %}
+            {{ title.provider }}, 
+        {% endfor %}
         </div>
-    {% endfor %}
+    <img src="{{ link }}">
   </section>
 
 {% endblock %}
