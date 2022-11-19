@@ -3,13 +3,52 @@
 {% block content %}
     <section class="home-section">
         <div class="text">Home</div>
-        <script>
-            let form = document.getElementById('home').addEventListener('click', function(){
-                event.preventDefault();
-            });
-        </script>
-        <div>suggestion 1</div>
-        <div>suggestion 2</div>
-        <div>suggestion 3</div>
+
+        {% for actor, tset in aset %}
+            {% if tset %}
+                <div class="text">Titles Starring {{ actor }}</div>
+                <div>
+                    {% for title in tset %}
+                        <form method=POST action="{% url 'title' %}">
+                            {% csrf_token %}
+                            <button type="submit", name="title", value="{{ title.title_id }}">{{ title.name }}</a>
+                        </form>,
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endfor %}
+
+        {% for director, tset in dset %}
+        {% if dset %}
+            <div class="text">Titles Directed by {{ director }}</div>
+            <div>
+                {% for title in tset %}
+                    <form method=POST action="{% url 'title' %}">
+                        {% csrf_token %}
+                        <button type="submit", name="title", value="{{ title.title_id }}">{{ title.name }}</a>
+                    </form>,
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% endfor %}
+
+        {% for name, tset in sset %}
+            {% if tset %}
+                <div class="text">Titles Similar to {{ name }}</div>
+                <div>
+                    {% for title in tset %}
+                        <form method=POST action="{% url 'title' %}">
+                            {% csrf_token %}
+                            <button type="submit", name="title", value="{{ title.title_id }}">{{ title.name }}</a>
+                        </form>,
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endfor %}
     </section>
+    <script>
+        let form = document.getElementById('home').addEventListener('click', function(){
+            event.preventDefault();
+        });
+    </script>
 {% endblock %}
