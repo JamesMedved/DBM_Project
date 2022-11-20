@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from django.db.models import Q
+from django.db.models import F
 from .models import Titles, Streaming, WatchLater, Watched
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
@@ -94,7 +94,7 @@ def watch_later(request):
             wl_obj.priority = new_pri
             wl_obj.save()
             
-    return render(request, 'watch_later.html', {'tset': WatchLater.objects.filter(user_id=request.user.id)})
+    return render(request, 'watch_later.html', {'tset': WatchLater.objects.filter(user_id=request.user.id).order_by(F('priority').desc(nulls_last=True))})
 
 @login_required(login_url='loginPage')
 def watched(request):
@@ -104,21 +104,21 @@ def watched(request):
         search = request.POST.get('search')
         if search:
             return render(request, 'search.html', {'tset': Streaming.objects.filter(title__name__icontains=search), 'search':search})
-            
+
         # Delete from watch later table
         del_id = request.POST.get('btn_del')
         if del_id:
             Watched.objects.get(title_id=del_id, user_id=request.user.id).delete()
-
+        
         # Update priority of watch later record
         new_rat = request.POST.get('dp_rat')
         w_id = request.POST.get('w_id')
         if new_rat:
-            wl_obj = Watched.objects.get(title_id=w_id, user_id=request.user.id)
-            wl_obj.rating = new_rat
-            wl_obj.save()
-
-    return render(request, 'watched.html', {'tset': Watched.objects.filter(user_id=request.user.id)})
+            w_obj = Watched.objects.get(title_id=w_id, user_id=request.user.id)
+            w_obj.rating = new_rat
+            w_obj.save()
+            
+    return render(request, 'watched.html', {'tset': Watched.objects.filter(user_id=request.user.id).order_by(F('rating').desc(nulls_last=True))})
 
 def registerPage(request):
     if request.user.is_authenticated:

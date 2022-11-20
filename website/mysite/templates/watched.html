@@ -15,6 +15,7 @@
           <table id="info">
             <tr>
               <th> Title </th>
+              <th> Date Finished </th>
               <th> Rating </th>
               <th> Delete </th>
             </tr>
@@ -26,7 +27,8 @@
                   <button type="submit", name="title", value="{{ title.title_id }}">{{ title.title.name }}</a>
                 </form>
               </td>
-              <td> <form method=POST action="{% url 'title' %}">
+              <td> {{ title.finished }} </td>
+              <td> <form method=POST action="{% url 'watched' %}">
                 {% csrf_token %}
                 <input name="w_id" value="{{ title.title_id }}" hidden="">
                 <div class = "dropdown-content">
