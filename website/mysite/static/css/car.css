@@ -52,6 +52,11 @@ body {
     border-radius: var(--tileBorderRadius);
 }
 
+.thumbTile .title_btn {
+    width: 100%;
+    background-color: aqua;
+}
+
 .thumbTiles .swiper-button-prev,
 .thumbTiles .swiper-button-next {
     height: 100%;

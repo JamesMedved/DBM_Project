@@ -56,8 +56,3 @@ class DBSM:
             except:
                 pass
 
-
-
-
-db = DBSM()
-db.add_img_link()

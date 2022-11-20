@@ -4,10 +4,37 @@
     <section class="home-section">
         <div class="text">Home</div>
 
-
+        <div class="text">Titles Staring Your Favorite Actors</div>
         {% for actor, tset in aset %}
             {% if tset %}
-                <div class="header">Titles Starring {{ actor }}</div>
+            <div class="text">Titles Staring {{ actor }}</div>
+                <section class="thumbSection">
+                    <div class="thumbTiles swiper-container">
+                        <!-- Additional required wrapper -->
+                        <div class="swiper-wrapper">
+                            <!-- Slides -->
+                            {% for title in tset %}
+                                <div class="swiper-slide">
+                                    <form method=POST action="{% url 'title' %}">
+                                    {% csrf_token %}
+                                    <a class="thumbTile" href="#">
+                                        <button class="title_btn" type="submit" name="title" value="{{ title.title_id }}"><span><img src="https://occ-0-1433-1432.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABUqwomVyMFsby9zeXLLnkfv744mKCzQDWL7rUDhbwg89bpT-V7qYoW-NNfjFaG3nFcDWu-U49vpUFB_L4njc2GFl6l60Efb4oT-_0e3oi3Dh8nwyLZhG2ciBHGUnRMB_J-D2jQk2Qz_WM4n8A_8b8ZqFDpj80B6KJ9T2bXR7rYcl0M8MaDCsR68.jpg?r=93f" /></span>&nbsp;{{ title.name }}</button>
+                                    </a>
+                                    </form>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <!-- <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div> -->
+                    </div>
+                </section>
+            {% endif %}
+        {% endfor %}
+
+        <div class="text">Titles Directed by Your Favorite Directors</div>
+        {% for director, tset in dset %}
+            {% if dset %}
+                <div class="text">Titles Directed by {{ director }}</div>
                 <section class="thumbSection">
                     <div class="thumbTiles swiper-container">
                         <!-- Additional required wrapper -->
@@ -31,84 +58,60 @@
             {% endif %}
         {% endfor %}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-
-        {% for director, tset in dset %}
-        {% if dset %}
-            <div class="text">Titles Directed by {{ director }}</div>
-            <div>
-                {% for title in tset %}
-                    <form method=POST action="{% url 'title' %}">
-                        {% csrf_token %}
-                        <button type="submit", name="title", value="{{ title.title_id }}">{{ title.name }}</a>
-                    </form>,
-                {% endfor %}
-            </div>
-        {% endif %}
-        {% endfor %}
-
+        <div class="text">Titles Similar to Your Favorite</div>
         {% for name, tset in sset %}
             {% if tset %}
-                <div class="text">Titles Similar to {{ name }}</div>
-                <div>
-                    {% for title in tset %}
-                        <form method=POST action="{% url 'title' %}">
-                            {% csrf_token %}
-                            <button type="submit", name="title", value="{{ title.title_id }}">{{ title.name }}</a>
-                        </form>,
-                    {% endfor %}
+            <div class="text">Titles Similar to {{ name }}</div>
+            <section class="thumbSection">
+                <div class="thumbTiles swiper-container">
+                    <!-- Additional required wrapper -->
+                    <div class="swiper-wrapper">
+                        <!-- Slides -->
+                        {% for title in tset %}
+                            <div class="swiper-slide">
+                                <form method=POST action="{% url 'title' %}">
+                                {% csrf_token %}
+                                <a class="thumbTile" href="#">
+                                    <button type="submit" name="title" value="{{ title.title_id }}"><span><img src="https://occ-0-1433-1432.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABUqwomVyMFsby9zeXLLnkfv744mKCzQDWL7rUDhbwg89bpT-V7qYoW-NNfjFaG3nFcDWu-U49vpUFB_L4njc2GFl6l60Efb4oT-_0e3oi3Dh8nwyLZhG2ciBHGUnRMB_J-D2jQk2Qz_WM4n8A_8b8ZqFDpj80B6KJ9T2bXR7rYcl0M8MaDCsR68.jpg?r=93f" /></span>&nbsp;{{ title.name }}</button>
+                                </a>
+                                </form>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <!-- <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div> -->
                 </div>
-            {% endif %}
-        {% endfor %}
-    </section>
+            </section>
+        {% endif %}
+    {% endfor %}
 
-    <script>
-        var mySwiper = new Swiper('.swiper-container', {
-            // Optional parameters
-            spaceBetween: 5,
-            slidesPerView: 2,
-            loop: true,
-            freeMode: true,
-            loopAdditionalSlides: 5,
-            speed: 500,
-            // Navigation arrows
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-            breakpoints: {
-                // when window width is >= 640px
-                640: {
-                    slidesPerView: 5,
-                    slidesPerGroup: 5,
-                    freeMode: false
-                }
+    <script type="text/javascript">
+
+    var mySwiper = new Swiper('.swiper-container', {
+        // Optional parameters
+        spaceBetween: 5,
+        slidesPerView: 2,
+        loop: true,
+        freeMode: true,
+        loopAdditionalSlides: 5,
+        speed: 500,
+        // Navigation arrows
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        breakpoints: {
+            // when window width is >= 640px
+            640: {
+                slidesPerView: 5,
+                slidesPerGroup: 5,
+                freeMode: false
             }
-        })
-    </script>
-
-    <script>
-        let form = document.getElementById('home').addEventListener('click', function(){
-            event.preventDefault();
-        });
+        }
+    })
+    
+    let form = document.getElementById('home').addEventListener('click', function(){
+        event.preventDefault();
+    });
     </script>
 {% endblock %}

@@ -8,18 +8,33 @@ def search_by_title(db, title_string):
     return response
 
 def get_hulu_links(db):
-    response = db.send_query("select * from hulu")
+    response = db.send_query("select * from streaming where provider = 'Hulu'")
     for item in response:
+        title_info = db.send_query("select * from Hulu where provider = 'Hulu'")
         if item[1] == "TV Show":
             link = "https://www.hulu.com/series/"
         if item[1] == "Movie":
             link = "https://www.hulu.com/movie/"
-        print(f"{link}{item[2].replace(' ', '-')}")
+       
+        link = f"{link}{item[2].replace(' ', '-')}"
+        print(item)
+        try:
+            response = db.send_query(f"update streaming set link = '{link}' where provider = 'Hulu' and title_id = {item[0]}")
+        except:
+            pass
+        return
 
 def get_netflix_links(db):
     response = db.send_query("select * from netflix")
     for item in response:
-        print(f"https://www.netflix.com/search?q={item[2].replace(' ', '%20')}")
+        link = f"https://www.netflix.com/search?q={item[2].replace(' ', '%20')}"
+        # print(link)
+        # print(item[0])
+        try:
+            response = db.send_query(f"update streaming set link = '' where provider = 'Netflix' and title_id = {item[0]}")
+        except:
+            pass
+        return
 
 def get_prime_links(db):
     response = db.send_query("select * from prime")
@@ -36,6 +51,6 @@ def get_disney_links(db):
         print(f"{link}{item[2].replace(' ', '-')}")
 
 db = DBSM()
-get_disney_links(db)
+get_hulu_links(db)
 db.end_connection()
 

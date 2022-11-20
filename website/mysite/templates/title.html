@@ -1,4 +1,5 @@
 {% extends 'nav.html' %}
+{% load static %}
 
 {% block content %}
   <section class="home-section">
@@ -20,10 +21,31 @@
         <div>Cast: {{ title.title.cast }}</div>
         <div>Available Here: 
         {% for title in tset %}
-            {{ title.provider }}, 
+            {% if title.provider == 'Netflix' %}
+                <a href="{{ title.link }}" class="button">
+                    <img src="{% static 'images/netflix_icon.png' %}">
+                </a>
+            {% endif %}
+
+            {% if title.provider == 'Hulu' %}
+            <a href="{{ title.link }}" class="button">
+                <img src="{% static 'images/hulu_icon.jpg' %}">
+            </a>
+            {% endif %}
+
+            {% if title.provider == 'Prime' %}
+            <a href="{{ title.link }}" class="button">
+                <img src="{% static 'images/prime_icon.png' %}">
+            </a>
+            {% endif %}
+            
+            {% if title.provider == 'Disney' %}
+            <a href="{{ title.link }}" class="button">
+                <img src="{% static 'images/dp_icon.png' %}">
+            </a>
+            {% endif %}
         {% endfor %}
         </div>
-    <img src="{{ link }}">
   </section>
 
 {% endblock %}
