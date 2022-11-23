@@ -4,6 +4,7 @@
 {% block content %}
   <section class="home-section">
         <div class="text">{{ title.title.name }}</div>
+        <div><img src="{{ title.title.image }}" alt=""></div>
         <div>{{ title.title.description }}</div>
         <div>{{ title.title.type }} 
             {% if title.title.type == 'Movie' %}

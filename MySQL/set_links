@@ -1,0 +1,78 @@
+from DBSM import DBSM
+
+
+def search_by_title(db, title_string):
+    response = db.send_query(f'select * from disney where title like "%{title_string}%"')
+    if not response:
+        print("No results found.")
+    return response
+
+def get_hulu_links(db):
+    response = db.send_query("select * from streaming where provider = 'Hulu'")
+    for item in response:
+        title_info = db.send_query(f"select * from Titles where title_id = {item[0]}")
+        if title_info[0][2] == "TV Show":
+            link = "https://www.hulu.com/series/"
+        if title_info[0][2] == "Movie":
+            link = "https://www.hulu.com/movie/"
+       
+        link = f"{link}{title_info[0][1].replace(' ', '-')}"
+        q = f"update streaming set link = '{link}' where provider = 'Hulu' and title_id = {item[0]}"
+        try:
+            response = db.send_query(q)
+            db.connection.commit()
+        except:
+            pass
+        # return
+
+def get_netflix_links(db):
+    response = db.send_query("select * from streaming where provider = 'Netflix'")
+    for item in response:
+        title_info = db.send_query(f"select * from Titles where title_id = {item[0]}")
+        link = f"https://www.netflix.com/search?q={title_info[0][1].replace(' ', '%20')}"
+        q = f"update streaming set link = '{link}' where provider = 'Netflix' and title_id = {item[0]}"
+        try:
+            response = db.send_query(q)
+            db.connection.commit()
+        except:
+            pass
+        # return
+
+def get_prime_links(db):
+    response = db.send_query("select * from streaming where provider = 'Prime'")
+    for item in response:
+        title_info = db.send_query(f"select * from Titles where title_id = {item[0]}")
+        link = f"https://www.amazon.com/s?k={title_info[0][1].replace(' ', '+')}&i=instant-video"
+        q = f"update streaming set link = '{link}' where provider = 'Prime' and title_id = {item[0]}"
+        try:
+            response = db.send_query(q)
+            db.connection.commit()
+        except:
+            pass
+
+
+
+def get_disney_links(db):
+    response = db.send_query("select * from streaming where provider = 'Disney'")
+    for item in response:
+        title_info = db.send_query(f"select * from Titles where title_id = {item[0]}")
+        if title_info[0][2] == "TV Show":
+            link = "https://www.disneyplus.com/series/"
+        if title_info[0][2] == "Movie":
+            link = "https://www.disneyplus.com/movies/"
+       
+        link = f"{link}{title_info[0][1].replace(' ', '-')}"
+        q = f"update streaming set link = '{link}' where provider = 'Disney' and title_id = {item[0]}"
+        try:
+            response = db.send_query(q)
+            db.connection.commit()
+        except:
+            pass
+
+db = DBSM()
+get_netflix_links(db)
+get_hulu_links(db)
+get_prime_links(db)
+get_disney_links(db)
+db.end_connection()
+

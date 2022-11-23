@@ -230,6 +230,8 @@ class Titles(models.Model):
     release_year = models.IntegerField(blank=True, null=True)
     cast = models.CharField(max_length=2048, blank=True, null=True)
     director = models.CharField(max_length=1024, blank=True, null=True)
+    rating = models.CharField(max_length=45, blank=True, null=True)
+    image = models.CharField(max_length=10000, blank=True, null=True)
 
     class Meta:
         managed = False
