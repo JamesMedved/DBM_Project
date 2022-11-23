@@ -9,7 +9,7 @@ class DBSM:
     def __init__(self):
         try:
             self.connection = mysql.connector.connect(host = 'localhost',
-                                                database = 'dbm_prj',
+                                                database = 'dbsmproject',
                                                 user = 'root',
                                                 password = 'RooT1234@@')
             if self.connection.is_connected():   # Connection successful

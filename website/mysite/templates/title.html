@@ -18,31 +18,40 @@
             {% endif %}</div>
         <div>Country: {{ title.title.country }}</div>
         <div>Release Year: {{ title.title.release_year }}</div>
-        <div>Director: {{ title.title.director }}</div>
-        <div>Cast: {{ title.title.cast }}</div>
+        <div>
+            {% if title.title.director %}
+                Director: {{ title.title.director }}
+             {% endif %}
+        </div>
+        <div>
+            {% if title.title.cast %}
+                Cast: {{ title.title.cast }}
+            {% endif %}
+        </div>
         <div>Available Here: 
+            <p></p>
         {% for title in tset %}
             {% if title.provider == 'Netflix' %}
                 <a href="{{ title.link }}" class="button">
-                    <img src="{% static 'images/netflix_icon.png' %}">
+                    <img src="{% static 'images/netflix_icon.png' %}" class="provider_img">
                 </a>
             {% endif %}
 
             {% if title.provider == 'Hulu' %}
             <a href="{{ title.link }}" class="button">
-                <img src="{% static 'images/hulu_icon.jpg' %}">
+                <img src="{% static 'images/hulu_icon.jpg' %}" class="provider_img">
             </a>
             {% endif %}
 
             {% if title.provider == 'Prime' %}
             <a href="{{ title.link }}" class="button">
-                <img src="{% static 'images/prime_icon.png' %}">
+                <img src="{% static 'images/prime_icon.png' %}" class="provider_img">
             </a>
             {% endif %}
             
             {% if title.provider == 'Disney' %}
             <a href="{{ title.link }}" class="button">
-                <img src="{% static 'images/dp_icon.png' %}">
+                <img src="{% static 'images/dp_icon.png' %}" class="provider_img">
             </a>
             {% endif %}
         {% endfor %}
