@@ -3,8 +3,10 @@
 {% block content %}
     <section class="home-section">
         <div class="text">Home</div>
+        <p></p>
 
         <div class="text">Titles Staring Your Favorite Actors</div>
+        <p></p>
         {% for actor, tset in aset %}
             {% if tset %}
             <div class="text">Titles Staring {{ actor }}</div>
@@ -18,7 +20,12 @@
                                     <form method=POST action="{% url 'title' %}">
                                     {% csrf_token %}
                                     <a class="thumbTile" href="#">
-                                        <button class="title_btn" type="submit" name="title" value="{{ title.title_id }}"><span><img src="https://occ-0-1433-1432.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABUqwomVyMFsby9zeXLLnkfv744mKCzQDWL7rUDhbwg89bpT-V7qYoW-NNfjFaG3nFcDWu-U49vpUFB_L4njc2GFl6l60Efb4oT-_0e3oi3Dh8nwyLZhG2ciBHGUnRMB_J-D2jQk2Qz_WM4n8A_8b8ZqFDpj80B6KJ9T2bXR7rYcl0M8MaDCsR68.jpg?r=93f" /></span>&nbsp;{{ title.name }}</button>
+                                        <button class="title_btn" type="submit" name="title" value="{{ title.title_id }}">
+                                            <span>
+                                                <img src="https://occ-0-1433-1432.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABUqwomVyMFsby9zeXLLnkfv744mKCzQDWL7rUDhbwg89bpT-V7qYoW-NNfjFaG3nFcDWu-U49vpUFB_L4njc2GFl6l60Efb4oT-_0e3oi3Dh8nwyLZhG2ciBHGUnRMB_J-D2jQk2Qz_WM4n8A_8b8ZqFDpj80B6KJ9T2bXR7rYcl0M8MaDCsR68.jpg?r=93f" />
+                                            </span>&nbsp;
+                                            <!-- {{ title.name }} -->
+                                        </button>
                                     </a>
                                     </form>
                                 </div>
@@ -32,6 +39,7 @@
         {% endfor %}
 
         <div class="text">Titles Directed by Your Favorite Directors</div>
+        <p></p>
         {% for director, tset in dset %}
             {% if dset %}
                 <div class="text">Titles Directed by {{ director }}</div>
@@ -59,6 +67,7 @@
         {% endfor %}
 
         <div class="text">Titles Similar to Your Favorite</div>
+        <p></p>
         {% for name, tset in sset %}
             {% if tset %}
             <div class="text">Titles Similar to {{ name }}</div>
