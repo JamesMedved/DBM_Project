@@ -16,7 +16,7 @@ def get_hulu_links(db):
         if title_info[0][2] == "Movie":
             link = "https://www.hulu.com/movie/"
        
-        link = f"{link}{title_info[0][1].replace(' ', '-')}"
+        link = f"{link}{title_info[0][1].replace(' ', '-').replace('&', 'and')}"
         q = f"update streaming set link = '{link}' where provider = 'Hulu' and title_id = {item[0]}"
         try:
             response = db.send_query(q)
@@ -29,7 +29,7 @@ def get_netflix_links(db):
     response = db.send_query("select * from streaming where provider = 'Netflix'")
     for item in response:
         title_info = db.send_query(f"select * from Titles where title_id = {item[0]}")
-        link = f"https://www.netflix.com/search?q={title_info[0][1].replace(' ', '%20')}"
+        link = f"https://www.netflix.com/search?q={title_info[0][1].replace(' ', '%20').replace('&', 'and')}"
         q = f"update streaming set link = '{link}' where provider = 'Netflix' and title_id = {item[0]}"
         try:
             response = db.send_query(q)
@@ -42,7 +42,7 @@ def get_prime_links(db):
     response = db.send_query("select * from streaming where provider = 'Prime'")
     for item in response:
         title_info = db.send_query(f"select * from Titles where title_id = {item[0]}")
-        link = f"https://www.amazon.com/s?k={title_info[0][1].replace(' ', '+')}&i=instant-video"
+        link = f"https://www.amazon.com/s?k={title_info[0][1].replace(' ', '+').replace('&', 'and')}&i=instant-video"
         q = f"update streaming set link = '{link}' where provider = 'Prime' and title_id = {item[0]}"
         try:
             response = db.send_query(q)
@@ -61,7 +61,7 @@ def get_disney_links(db):
         if title_info[0][2] == "Movie":
             link = "https://www.disneyplus.com/movies/"
        
-        link = f"{link}{title_info[0][1].replace(' ', '-')}"
+        link = f"{link}{title_info[0][1].replace(' ', '-').replace('&', 'and')}"
         q = f"update streaming set link = '{link}' where provider = 'Disney' and title_id = {item[0]}"
         try:
             response = db.send_query(q)

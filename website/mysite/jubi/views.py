@@ -31,6 +31,17 @@ def home(request):
     })
 
 @login_required(login_url='loginPage')
+def social(request):
+    # Search for title if input is not empty
+    if request.method == "POST":
+        # Check for new search
+        search = request.POST.get('search')
+        if search:
+            return render(request, 'search.html', {'tset': Streaming.objects.filter(title__name__icontains=search), 'search':search})
+
+    return render(request, 'social.html', {})
+
+@login_required(login_url='loginPage')
 def title(request):
     if request.method == "POST":
         # Check for new search
