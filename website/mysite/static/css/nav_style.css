@@ -222,7 +222,7 @@
 }
 .home-section{
   position: relative;
-  background: #E4E9F7;
+  background: #1d1b31;
   min-height: 100vh;
   top: 0;
   left: 78px;
@@ -236,7 +236,7 @@
 }
 .home-section .text{
   display: inline-block;
-  color: #11101d;
+  color: #fff;
   font-size: 25px;
   font-weight: 500;
   margin: 18px
