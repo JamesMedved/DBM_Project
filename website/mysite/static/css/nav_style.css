@@ -224,7 +224,7 @@
 .home-section{
   position: relative;
   background: #1d1b31;
-  background-image: linear-gradient(to bottom right, #1d1b31,black);
+  background-image: linear-gradient(to bottom right, #1d1b31,rgb(27, 26, 26));
   min-height: 100vh;
   top: 0;
   left: 78px;
@@ -404,4 +404,16 @@ table tr:nth-child(even) {
   color: white;
   font-size: 30px;
   padding-left: 20px;
+}
+
+.friend {
+  color: white;
+  font-size: 30px;
+  padding-left: 20px;
+}
+
+.friend_search {
+  color:white;
+  padding-left: 20px;
+  padding-bottom: 50px;
 }
