@@ -1,0 +1,67 @@
+{% extends 'nav.html' %}
+
+{% block content %}
+  <section class="home-section">
+      <script>
+    let form = document.getElementById('watchLater').addEventListener('click', function(){
+        event.preventDefault();
+    });
+  </script>
+  <div class="text">{{ friend.username}}'s Profile:</div>
+  <div class="text">{{ friend.username}}'s Watch Later Titles</div>
+  
+    {% if wlset %}
+      <div class="container">
+        <div class="table">
+          <table id="info">
+            <tr>
+              <th> Title </th>
+              <th> Date Added </th>
+              <th> Priority </th>
+            </tr>
+            {% for title in wlset%}
+            <tr>
+              <td>{{ title.title.name }}</td>
+              <td> {{ title.date_added }} </td>
+              <td> {{ title.priority }}</td>
+            </tr>
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+    {% else %}
+      <div class="title">
+        <h1>{{ friend.username}}'s Watch Later List is Empty</h1>
+      </div>
+    {% endif %}
+
+    <div class="text">Watched</div>
+  
+    {% if wset %}
+      <div class="container">
+        <div class="table">
+          <table id="info">
+            <tr>
+              <th> Title </th>
+              <th> Date Finished </th>
+              <th> Rating </th>
+            </tr>
+            {% for title in wset %}
+            <tr>
+              <td>{{ title.title.name }}</td>
+              <td> {{ title.finished }} </td>
+              <td>{{ title.rating }}</td>
+            </tr>
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+    {% else %}
+      <div class="title">
+        <h1>Your title List is Empty</h1>
+      </div>
+    {% endif %}
+
+  </section>
+
+{% endblock %}

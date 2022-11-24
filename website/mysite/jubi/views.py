@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.db.models import F
-from .models import Titles, Streaming, WatchLater, Watched
+from .models import Titles, Streaming, WatchLater, Watched, Friends
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
@@ -10,6 +10,7 @@ from .forms import CreateUserForm
 from datetime import date
 from collections import Counter
 from itertools import chain
+from django.contrib.auth.models import User
 
 # Create your views here.
 @login_required(login_url='loginPage')
@@ -35,11 +36,45 @@ def social(request):
     # Search for title if input is not empty
     if request.method == "POST":
         # Check for new search
+        title_search = request.POST.get('search')
+        if title_search:
+            return render(request, 'search.html', {'tset': Streaming.objects.filter(title__name__icontains=title_search), 'search':title_search})
+
+        # Check for user search
+        user_search = request.POST.get('friend_search')
+        if user_search:
+            return render(request, 'social.html', 
+            {'fset': Friends.objects.filter(user_id=request.user.id),
+            'uset': User.objects.filter(username=user_search).exclude(id=request.user.id), 
+            'search':user_search})
+
+        # Insert into watch later table
+        add_friend = request.POST.get('add_fr')
+        if add_friend:
+            Friends(user_id=request.user.id, friend_id=add_friend).save()
+
+        # Delete from watch later table
+        del_id = request.POST.get('btn_del')
+        if del_id:
+            Friends.objects.get(user_id=request.user.id, friend_id=del_id).delete()
+    
+    return render(request, 'social.html', {'fset': Friends.objects.filter(user_id=request.user.id)})
+
+@login_required(login_url='loginPage')
+def friend(request):
+    if request.method == "POST":
+        # Check for new search
         search = request.POST.get('search')
         if search:
             return render(request, 'search.html', {'tset': Streaming.objects.filter(title__name__icontains=search), 'search':search})
 
-    return render(request, 'social.html', {})
+        # Return title information
+        friend_id = request.POST.get('friend')
+        if title:
+            return render(request, 'friend.html', 
+            {'friend': User.objects.filter(id=friend_id)[0],
+            'wlset': WatchLater.objects.filter(user_id=friend_id).order_by(F('priority').desc(nulls_last=True)),
+            'wset': Watched.objects.filter(user_id=friend_id).order_by(F('rating').desc(nulls_last=True))})
 
 @login_required(login_url='loginPage')
 def title(request):
