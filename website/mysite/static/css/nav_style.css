@@ -366,3 +366,11 @@ table tr:nth-child(even) {
   width: 50px;
   object-fit: contain;
 }
+
+.box-art {
+  position: absolute;
+  top: 50px;
+  right: 50px;
+  height: 600px; 
+  width: auto;
+}

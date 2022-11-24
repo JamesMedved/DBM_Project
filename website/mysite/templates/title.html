@@ -4,30 +4,35 @@
 {% block content %}
   <section class="home-section">
         <div class="text">{{ title.title.name }}</div>
-        <div><img src="{{ title.title.image }}" alt=""></div>
-        <div>{{ title.title.description }}</div>
-        <div>{{ title.title.type }} 
-            {% if title.title.type == 'Movie' %}
-                ({{ title.title.duration }} min)
-            {% else %}
-                {% if title.title.duration == 1 %}
-                    ({{ title.title.duration }} season)
+        <div>
+            <img src="{{ title.title.image }}" alt="" class="box-art">
+        </div>
+        <div class="title-container">
+            <div>{{ title.title.description }}</div>
+            <div>{{ title.title.type }} 
+                {% if title.title.type == 'Movie' %}
+                    ({{ title.title.duration }} min)
                 {% else %}
-                    ({{ title.title.duration }} seasons)
+                    {% if title.title.duration == 1 %}
+                        ({{ title.title.duration }} season)
+                    {% else %}
+                        ({{ title.title.duration }} seasons)
+                    {% endif %}
+                {% endif %}</div>
+            <div>Country: {{ title.title.country }}</div>
+            <div>Release Year: {{ title.title.release_year }}</div>
+            <div>
+                {% if title.title.director %}
+                    Director: {{ title.title.director }}
                 {% endif %}
-            {% endif %}</div>
-        <div>Country: {{ title.title.country }}</div>
-        <div>Release Year: {{ title.title.release_year }}</div>
-        <div>
-            {% if title.title.director %}
-                Director: {{ title.title.director }}
-             {% endif %}
+            </div>
+            <div>
+                {% if title.title.cast %}
+                    Cast: <p></p>
+                    {{ title.title.cast }}
+                {% endif %}
         </div>
-        <div>
-            {% if title.title.cast %}
-                Cast: {{ title.title.cast }}
-            {% endif %}
-        </div>
+    </div>
         <div>Available Here: 
             <p></p>
         {% for title in tset %}
