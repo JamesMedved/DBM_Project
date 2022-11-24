@@ -14,4 +14,5 @@ urlpatterns = [
     path('home/', views.home, name='home'),
     path('title/', views.title, name='title'),
     path('social/', views.social, name='social'),
+    path('friend/', views.friend, name='friend'),
 ]

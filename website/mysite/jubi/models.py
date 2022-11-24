@@ -149,6 +149,14 @@ class DjangoSite(models.Model):
         managed = False
         db_table = 'django_site'
 
+class Friends(models.Model):
+    user_id = models.IntegerField(primary_key=True)
+    friend_id = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'friends'
+        unique_together = (('user_id', 'friend_id'),)
 
 class Hulu(models.Model):
     show_id = models.IntegerField(blank=True, null=True)
