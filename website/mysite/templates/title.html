@@ -4,12 +4,12 @@
 {% block content %}
   <section class="home-section">
         <div class="text">{{ title.title.name }}</div>
-        <div>
-            <img src="{{ title.title.image }}" alt="" class="box-art">
-        </div>
         <div class="title-container">
-            <div>{{ title.title.description }}</div>
-            <div>{{ title.title.type }} 
+            <div class="info">
+                {{ title.title.description }}
+            </div>
+            <div class="info">
+                {{ title.title.type }} 
                 {% if title.title.type == 'Movie' %}
                     ({{ title.title.duration }} min)
                 {% else %}
@@ -19,21 +19,33 @@
                         ({{ title.title.duration }} seasons)
                     {% endif %}
                 {% endif %}</div>
-            <div>Country: {{ title.title.country }}</div>
-            <div>Release Year: {{ title.title.release_year }}</div>
-            <div>
-                {% if title.title.director %}
-                    Director: {{ title.title.director }}
+            <div class="info">
+                {% if title.title.release_year %}
+                    Release Year: {{ title.title.release_year }}
                 {% endif %}
             </div>
-            <div>
+            <div class = "info">
                 {% if title.title.cast %}
                     Cast: <p></p>
                     {{ title.title.cast }}
                 {% endif %}
+            </div>
+            <div class = "info">
+                {% if title.title.country %}
+                    Filmed in {{ title.title.country }}
+                {% endif %}
+            </div>
+            <div class="info">
+                {% if title.title.director %}
+                    Director: {{ title.title.director }}
+                {% endif %}
+            </div>
         </div>
+    <div class="provider-info">
+    <div>
+        <img src="{{ title.title.image }}" alt="" class="box-art">
     </div>
-        <div>Available Here: 
+        <div>Available On These Platforms
             <p></p>
         {% for title in tset %}
             {% if title.provider == 'Netflix' %}
@@ -61,6 +73,7 @@
             {% endif %}
         {% endfor %}
         </div>
+    </div>
   </section>
 
 {% endblock %}
