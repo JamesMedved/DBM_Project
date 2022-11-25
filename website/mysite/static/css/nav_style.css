@@ -292,7 +292,7 @@ table tr:nth-child(even) {
 }
 
 /* Row changes color when you hover over it. */
-table tr:hover {
+table td:hover {
   background-color: rgb(187, 184, 184);
 }
 
@@ -303,6 +303,7 @@ table tr:hover {
   width:100%;
   font-size: 16px;
   text-align: left;
+  cursor: pointer;
 }
 
 .btn {
