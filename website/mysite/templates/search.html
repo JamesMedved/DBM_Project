@@ -19,7 +19,7 @@
             <td>
               <form method=POST action="{% url 'title' %}">
                 {% csrf_token %}
-                <button type="submit", name="title", value="{{ title.title_id }}">{{ title.title.name }}</a>
+                <button type="submit" class="title-btn" name="title", value="{{ title.title_id }}">{{ title.title.name }}</a>
               </form>
               </td>
             <td> {{ title.provider }} </td>
@@ -42,7 +42,9 @@
     </div>
     {% else %}
       {% if search %}
-        <div class="none">Your search "{{ search }}" did not have any matches.</div>
+        <div class="none">
+          Your search "{{ search }}" did not have any matches.
+        </div>
       {% endif %}
     {% endif %}
   </section>

@@ -7,7 +7,8 @@
         event.preventDefault();
     });
   </script>
-  <div class="text">{{ friend.username}}'s Profile:</div>
+  <div class="text">{{ friend.username}}'s Profile</div>
+  <p></p>
   <div class="text">{{ friend.username}}'s Watch Later Titles</div>
   
     {% if wlset %}
@@ -30,7 +31,7 @@
         </div>
       </div>
     {% else %}
-      <div class="title">
+      <div class="none">
         <h1>{{ friend.username}}'s Watch Later List is Empty</h1>
       </div>
     {% endif %}

@@ -51,7 +51,7 @@ def social(request):
         # Insert into watch later table
         add_friend = request.POST.get('add_fr')
         if add_friend:
-            Friends(user_id=request.user.id, friend_id=add_friend).save()
+            Friends.objects.update_or_create(user_id=request.user.id, friend_id=add_friend)
 
         # Delete from watch later table
         del_id = request.POST.get('btn_del')

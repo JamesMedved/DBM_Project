@@ -272,22 +272,37 @@ th {
   text-align: left;
   color: black;
   font-weight: bold;
+  font-size:18px;
 }
 
 td {
-  padding-top: 10px;
+  padding: 5px;
   vertical-align: middle;
   min-width: 50px;
   max-width: 600px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  padding-left: 5px;
-  padding-right: 5px;
+  font-size: 16px;
+  text-align: center;
 }
 
 table tr:nth-child(even) {
   background-color: #cfd5e4;
+}
+
+/* Row changes color when you hover over it. */
+table tr:hover {
+  background-color: rgb(187, 184, 184);
+}
+
+.title-btn {
+  border: none;
+  text-decoration: none;
+  background: none;
+  width:100%;
+  font-size: 16px;
+  text-align: left;
 }
 
 .btn {
@@ -416,4 +431,26 @@ table tr:nth-child(even) {
   color:white;
   padding-left: 20px;
   padding-bottom: 50px;
+}
+
+.test-box {
+  background: rgb(33, 16, 131); 
+  height: 35px;
+  float:right;
+  width: 87%;
+  transform: skew(-20deg)
+}
+
+.test-box2 {
+  background: rgb(33, 16, 131); 
+  height: 35px;
+  float:left;
+  width: 5%;
+  padding-top: 15px;
+  transform: skew(-20deg);
+  margin-right: 15px;
+}
+
+.info-header {
+  padding-bottom: 30px;
 }

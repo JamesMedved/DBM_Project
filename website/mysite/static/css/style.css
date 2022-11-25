@@ -118,47 +118,6 @@ body {
   box-sizing: 100%;
 }
 
-/* Add a thick border around the whole table. */
-table, th, td { 
-  border: 1px solid black;
-}
-
-th, td {
-  padding: 4px;
-}
-
-/* Data styles for table. */
-td {
-  padding-top: 10px;
-  vertical-align: middle;
-  min-width: 50px;
-  max-width: 400px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-/* Header Column Style settings */
-th {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 5px;
-  padding-right: 5px;
-  text-align: left;
-  background-color: rgb(73,97,132);
-  color: white;
-}
-
-/* Makes every other entry a different shade for better readability. */
-table tr:nth-child(even) {
-  background-color: #cecacc;
-}
-
-/* Row changes color when you hover over it. */
-table tr:hover {background-color: rgb(187, 184, 184);}
-
 /* Watch Later Button style */
 .btn {
   border:0;
@@ -193,11 +152,4 @@ table tr:hover {background-color: rgb(187, 184, 184);}
   margin: auto;
   margin-top: 120px;
   font-weight: bold;
-}
-
-.dropdown-content {
-  position: absolute;
-  margin-left: 20%px;
-  margin-top: -12px;
-  width: 40px;
 }
