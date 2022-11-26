@@ -257,7 +257,7 @@
 }
 
 table {
-  background: white;
+  background: rgb(56, 59, 97);
   padding-right: 5px;
   padding-left: 5px;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
@@ -270,7 +270,7 @@ th {
   padding-left: 8px;
   padding-right: 10px;
   text-align: left;
-  color: black;
+  color: white;
   font-weight: bold;
   font-size:18px;
 }
@@ -288,7 +288,7 @@ td {
 }
 
 table tr:nth-child(even) {
-  background-color: #cfd5e4;
+  background-color: #576a9c;
 }
 
 /* Row changes color when you hover over it. */
@@ -304,6 +304,7 @@ table td:hover {
   font-size: 16px;
   text-align: left;
   cursor: pointer;
+  color: white;
 }
 
 .btn {
