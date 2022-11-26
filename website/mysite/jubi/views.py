@@ -110,15 +110,6 @@ def search(request):
         if w_id:
             Watched(title_id = w_id, user_id=request.user.id, finished=date.today()).save()
 
-    # Get watched and watch later titles
-    qset = list(chain(WatchLater.objects.filter(user_id=request.user.id), Watched.objects.filter(user_id=request.user.id)))
-    return render(request, 'home.html', 
-    {
-        'aset': get_actor_recs(qset),
-        'dset': get_director_recs(qset),
-        'sset': get_similar_recs(qset)
-    })
-
 @login_required(login_url='loginPage')
 def watch_later(request):
     # title_set = Titles.objects.filter(id=watch_later_set)
