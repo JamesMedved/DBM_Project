@@ -5,11 +5,11 @@
         <div class="text">Home</div>
         <p></p>
 
-        {% if aset %}
-        {% endif %}
         {% for actor, tset in aset %}
             {% if tset %}
-            <div class="text">Titles Staring {{ actor }}</div>
+            <div class="titles-sim">
+                Titles Staring {{ actor }}
+            </div>
                 <section class="thumbSection">
                     <div class="thumbTiles swiper-container">
                         <!-- Additional required wrapper -->
@@ -38,8 +38,6 @@
             {% endif %}
         {% endfor %}
 
-        {% if dset %}
-        {% endif %}
         {% for director, tset in dset %}
             {% if dset %}
                 <div class="text">Titles Directed by {{ director }}</div>
@@ -66,11 +64,11 @@
             {% endif %}
         {% endfor %}
 
-        {% if sset %}
-        {% endif %}
         {% for name, tset in sset %}
             {% if sset %}
-            <div class="text">Titles Similar to {{ name }}</div>
+            <div class="titles-sim">
+                Titles Similar to {{ name }}
+            </div>
             <section class="thumbSection">
                 <div class="thumbTiles swiper-container">
                     <!-- Additional required wrapper -->
