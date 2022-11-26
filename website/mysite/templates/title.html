@@ -3,7 +3,7 @@
 
 {% block content %}
   <section class="home-section">
-        <div class="text">{{ title.title.name }}</div>
+        <div class="section-text">{{ title.title.name }}</div>
         <div class="title-container">
             <div class="info">
                 {{ title.title.description }}
@@ -27,9 +27,13 @@
             <div class = "info">
                 <div class ="info-header">
                 {% if title.title.cast %}
-                <div class="test-box2"></div>
+                <div class="section-container">
+                    <div class="accent-left"></div>
+                    <div class="section-text">
                     Cast 
-                    <div class="test-box"></div>
+                </div> 
+                <div class="accent-right"></div>
+              </div>
                 </div>
                     <p></p>
                     {{ title.title.cast }}

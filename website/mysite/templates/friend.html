@@ -9,7 +9,13 @@
   </script>
   <div class="text">{{ friend.username}}'s Profile</div>
   <p></p>
-  <div class="text">{{ friend.username}}'s Watch Later Titles</div>
+  <div class="section-container">
+    <div class="accent-left"></div>
+    <div class="section-text">
+      {{ friend.username}}'s Watch Later Titles
+    </div> 
+    <div class="accent-right"></div>
+  </div>
   
     {% if wlset %}
       <div class="container">
@@ -36,7 +42,13 @@
       </div>
     {% endif %}
 
-    <div class="text">Watched</div>
+    <div class="section-container">
+      <div class="accent-left"></div>
+      <div class="section-text">
+        Watched
+      </div> 
+      <div class="accent-right"></div>
+    </div>
   
     {% if wset %}
       <div class="container">
@@ -59,7 +71,7 @@
       </div>
     {% else %}
       <div class="none">
-        Your title List is Empty
+        {{ friend.username}}'s Watched List is Empty
       </div>
     {% endif %}
 
