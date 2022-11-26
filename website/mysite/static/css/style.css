@@ -99,6 +99,7 @@
 .sidebar.open li .tooltip{
   display: none;
 }
+
 .sidebar input{
   font-size: 15px;
   color: #FFF;
@@ -112,10 +113,12 @@
   transition: all 0.5s ease;
   background: #1d1b31;
 }
+
 .sidebar.open input{
   padding: 0 20px 0 50px;
   width: 100%;
 }
+
 .sidebar .bx-search{
   position: absolute;
   top: 50%;
@@ -125,6 +128,7 @@
   background: #1d1b31;
   color: #FFF;
 }
+
 .sidebar.open .bx-search:hover{
   background: #1d1b31;
   color: #FFF;
@@ -260,8 +264,10 @@ table {
   background: rgb(56, 59, 97);
   padding-right: 5px;
   padding-left: 5px;
+  padding-bottom: 5px;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
   border-radius: 5px;
+  margin-bottom: 30px;
 }
 
 th {
@@ -457,4 +463,37 @@ tr:not(:first-child):hover {
 
 .info-header {
   padding-bottom: 30px;
+}
+
+.friend_search {
+  width: 200px;
+}
+
+.friend_search input{
+  font-size: 15px;
+  color: #FFF;
+  font-weight: 400;
+  outline: none;
+  height: 40px;
+  width: 100%;
+  width: 200px;
+  border: none;
+  border-radius: 12px;
+  transition: all 0.5s ease;
+  background: #576a9c;
+  padding: 0 10px 0 20px;
+}
+
+.friend_search .bx-search{
+  position: absolute;
+  top: 14.5%;
+  left: 12px;
+  transform: translateY(-50%);
+  font-size: 22px;
+  background: #1d1b31;
+  color: #FFF;
+}
+
+::placeholder {
+  color:white;
 }
