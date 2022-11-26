@@ -285,6 +285,7 @@ td {
   text-overflow: ellipsis;
   font-size: 16px;
   text-align: center;
+  color: white
 }
 
 table tr:nth-child(even) {
@@ -292,8 +293,8 @@ table tr:nth-child(even) {
 }
 
 /* Row changes color when you hover over it. */
-table td:hover {
-  background-color: rgb(187, 184, 184);
+table tr:hover {
+  background-color: #8e939e;
 }
 
 .title-btn {
