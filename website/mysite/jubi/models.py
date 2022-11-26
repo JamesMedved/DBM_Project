@@ -151,7 +151,7 @@ class DjangoSite(models.Model):
 
 class Friends(models.Model):
     user_id = models.IntegerField(primary_key=True)
-    friend = models.ForeignKey(AuthUser, models.DO_NOTHING)
+    friend = models.OneToOneField(AuthUser, models.DO_NOTHING)
 
     class Meta:
         managed = False

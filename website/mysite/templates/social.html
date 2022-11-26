@@ -60,13 +60,13 @@
                         <td>
                             <form method=POST action="{% url 'friend' %}">
                                 {% csrf_token %}
-                                <button type="submit" class="title-btn" name="friend" value="{{ friend.friend_id }}">{{ friend.friend.username }}</a>
+                                <button type="submit" class="title-btn" name="friend" value="{{ friend.friend.id }}">{{ friend.friend.username }}</a>
                             </form>
                         </td>
                         <td>
                             <form method=POST action="{% url 'social' %}">
                             {% csrf_token %}
-                            <button type="submit" class="btn" name="btn_del" value="{{ friend.friend_id }}">x</button>
+                            <button type="submit" class="btn" name="btn_del" value="{{ friend.friend.id }}">x</button>
                             </form>
                         </td>
                     </tr>
