@@ -151,12 +151,12 @@ class DjangoSite(models.Model):
 
 class Friends(models.Model):
     user_id = models.IntegerField(primary_key=True)
-    friend_id = models.IntegerField()
+    friend = models.ForeignKey(AuthUser, models.DO_NOTHING)
 
     class Meta:
         managed = False
         db_table = 'friends'
-        unique_together = (('user_id', 'friend_id'),)
+        unique_together = (('user_id', 'friend'),)
 
 class Hulu(models.Model):
     show_id = models.IntegerField(blank=True, null=True)

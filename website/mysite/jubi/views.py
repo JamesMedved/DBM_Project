@@ -56,7 +56,7 @@ def social(request):
         # Delete from watch later table
         del_id = request.POST.get('btn_del')
         if del_id:
-            Friends.objects.get(user_id=request.user.id, friend_id=del_id).delete()
+            Friends.objects.get(user_id=request.user.id, friend__id=del_id).delete()
     
     return render(request, 'social.html', {'fset': Friends.objects.filter(user_id=request.user.id)})
 

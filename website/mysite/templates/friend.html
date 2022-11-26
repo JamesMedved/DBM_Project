@@ -2,11 +2,6 @@
 
 {% block content %}
   <section class="home-section">
-      <script>
-    let form = document.getElementById('watchLater').addEventListener('click', function(){
-        event.preventDefault();
-    });
-  </script>
   <div class="text">{{ friend.username}}'s Profile</div>
   <p></p>
   <div class="text">{{ friend.username}}'s Watch Later Titles</div>
@@ -22,7 +17,12 @@
             </tr>
             {% for title in wlset%}
             <tr>
-              <td>{{ title.title.name }}</td>
+              <td>
+                <form method=POST action="{% url 'title' %}">
+                  {% csrf_token %}
+                  <button type="submit" class="title-btn" name="title", value="{{ title.title_id }}">{{ title.title.name }}</a>
+                </form>
+              </td>
               <td> {{ title.date_added }} </td>
               <td> {{ title.priority }}</td>
             </tr>
@@ -49,7 +49,12 @@
             </tr>
             {% for title in wset %}
             <tr>
-              <td>{{ title.title.name }}</td>
+              <td>
+                <form method=POST action="{% url 'title' %}">
+                  {% csrf_token %}
+                  <button type="submit" class="title-btn" name="title", value="{{ title.title_id }}">{{ title.title.name }}</a>
+                </form>
+              </td>
               <td> {{ title.finished }} </td>
               <td>{{ title.rating }}</td>
             </tr>
