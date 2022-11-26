@@ -217,7 +217,7 @@ def get_actor_recs(qset):
     # Get titles for each of top 5 actors as long as more than two are returned
     for actor in actors:
         query = Titles.objects.filter(cast__icontains=actor)
-        if len(query) > 2:
+        if len(query) > 3:
             actor_titles.append(query)
         else:
             actors.remove(actor)
@@ -239,7 +239,7 @@ def get_similar_recs(qset):
         if title.title.name not in titles:
             titles.append(title.title.name)
             query = Titles.objects.filter(name__icontains=base_name).exclude(name=title.title.name)
-            if len(query) > 2:
+            if len(query) > 3:
                 similar_titles.append(query)
                 titles.append(title.title.name)
     return zip(titles, similar_titles)
@@ -256,7 +256,7 @@ def get_director_recs(qset):
     # Get titles for each of top 5 directors as long as more than two are returned
     for director in directors:
         query = Titles.objects.filter(director__icontains=director)
-        if len(query) > 2:
+        if len(query) > 3:
             director_titles.append(query)
         else:
             directors.remove(director)

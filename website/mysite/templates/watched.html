@@ -24,7 +24,7 @@
               <td>
                 <form method=POST action="{% url 'title' %}">
                   {% csrf_token %}
-                  <button type="submit", name="title", value="{{ title.title_id }}">{{ title.title.name }}</a>
+                  <button type="submit" class="title-btn" name="title" value="{{ title.title_id }}">{{ title.title.name }}</a>
                 </form>
               </td>
               <td> {{ title.finished }} </td>
@@ -32,14 +32,14 @@
                 {% csrf_token %}
                 <input name="w_id" value="{{ title.title_id }}" hidden="">
                 <div class = "dropdown-content">
-                <select onChange="form.submit();" name="dp_rat">
-                  <option value="{{ title.rating }}">{{ title.rating }}</option>
+                  <select onChange="form.submit();" name="dp_rat">
+                    <option value="{{ title.rating }}">{{ title.rating }}</option>
 
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
                 </div>
                 </select>
               </form>

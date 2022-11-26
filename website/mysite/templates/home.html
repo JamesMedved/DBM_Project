@@ -6,8 +6,6 @@
         <p></p>
 
         {% if aset %}
-            <div class="text">Titles Staring Your Favorite Actors</div>
-            <p></p>
         {% endif %}
         {% for actor, tset in aset %}
             {% if tset %}
@@ -41,8 +39,6 @@
         {% endfor %}
 
         {% if dset %}
-            <div class="text">Titles Directed by Your Favorite Directors</div>
-            <p></p>
         {% endif %}
         {% for director, tset in dset %}
             {% if dset %}
@@ -71,8 +67,6 @@
         {% endfor %}
 
         {% if sset %}
-            <div class="text">Titles Similar to Your Favorite</div>
-            <p></p>
         {% endif %}
         {% for name, tset in sset %}
             {% if sset %}
