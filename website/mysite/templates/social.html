@@ -62,7 +62,7 @@
                                 {% csrf_token %}
                                 <button type="submit", name="friend", value="{{ friend.friend_id }}">{{ friend.friend_id }}</a>
                             </form>
-                        <td>
+                        </td>
                         <td>
                             <form method=POST action="{% url 'social' %}">
                             {% csrf_token %}
