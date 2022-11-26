@@ -296,7 +296,7 @@ table tr:nth-child(even) {
 
 /* Row changes color when you hover over it. */
 table tr:hover {
-  background-color: #BA909E;
+  background-color: #8e939e;
 }
 
 .title-btn {
