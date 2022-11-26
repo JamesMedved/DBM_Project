@@ -70,3 +70,12 @@ body {
 .flash-message {
     color:red;
 }
+
+.logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    height: 200px;
+    width: auto;
+}
