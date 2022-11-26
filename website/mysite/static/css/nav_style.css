@@ -438,7 +438,7 @@ tr:not(:first-child):hover {
 }
 
 .test-box {
-  background: rgb(33, 16, 131); 
+  background: #576a9c; 
   height: 35px;
   float:right;
   width: 87%;
@@ -446,7 +446,7 @@ tr:not(:first-child):hover {
 }
 
 .test-box2 {
-  background: rgb(33, 16, 131); 
+  background: #576a9c; 
   height: 35px;
   float:left;
   width: 5%;

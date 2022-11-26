@@ -24,7 +24,7 @@
               <td>
                 <form method=POST action="{% url 'title' %}">
                   {% csrf_token %}
-                  <button type="submit", name="title", value="{{ title.title_id }}">{{ title.title.name }}</a>
+                  <button type="submit" class="title-btn" name="title" value="{{ title.title_id }}">{{ title.title.name }}</a>
                 </form>
               </td>
               <td> {{ title.date_added }} </td>
