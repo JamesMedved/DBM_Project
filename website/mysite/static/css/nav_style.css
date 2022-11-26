@@ -294,8 +294,7 @@ table tr:nth-child(even) {
   background-color: #576a9c;
 }
 
-/* Row changes color when you hover over it. */
-table tr:hover {
+tr:not(:first-child):hover {
   background-color: #8e939e;
 }
 
@@ -326,7 +325,7 @@ table tr:hover {
   border-radius: 40px;
   transition:0.25px;
   cursor: pointer;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
 }
 
 .btn:hover {
