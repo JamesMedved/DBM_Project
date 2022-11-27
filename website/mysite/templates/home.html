@@ -11,7 +11,6 @@
                 Titles Staring {{ actor }}
             </div>
                 <section class="thumbSection">
-                    <div class="swiper-button-next"></div>
                     <div class="thumbTiles swiper-container">
                         <!-- Additional required wrapper -->
                         <div class="swiper-wrapper">
@@ -23,7 +22,7 @@
                                     <a class="thumbTile" href="#">
                                         <button class="title_btn" type="submit" name="title" value="{{ title.title_id }}">
                                             <span>
-                                                <img src="https://occ-0-1433-1432.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABUqwomVyMFsby9zeXLLnkfv744mKCzQDWL7rUDhbwg89bpT-V7qYoW-NNfjFaG3nFcDWu-U49vpUFB_L4njc2GFl6l60Efb4oT-_0e3oi3Dh8nwyLZhG2ciBHGUnRMB_J-D2jQk2Qz_WM4n8A_8b8ZqFDpj80B6KJ9T2bXR7rYcl0M8MaDCsR68.jpg?r=93f" />
+                                                <img src="{{ title.image }}" />
                                             </span>&nbsp;
                                             <!-- {{ title.name }} -->
                                         </button>
@@ -33,14 +32,13 @@
                             {% endfor %}
                         </div>
                     </div>
-                    <div class="swiper-button-prev"></div>
                 </section>
             {% endif %}
         {% endfor %}
 
         {% for director, tset in dset %}
-            {% if dset %}
-                <div class="text">Titles Directed by {{ director }}</div>
+            {% if tset %}
+            <div class="titles-sim">Titles Directed by {{ director }}</div>
                 <section class="thumbSection">
                     <div class="thumbTiles swiper-container">
                         <!-- Additional required wrapper -->
@@ -51,46 +49,50 @@
                                     <form method=POST action="{% url 'title' %}">
                                     {% csrf_token %}
                                     <a class="thumbTile" href="#">
-                                        <button type="submit" name="title" value="{{ title.title_id }}"><span><img src="https://occ-0-1433-1432.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABUqwomVyMFsby9zeXLLnkfv744mKCzQDWL7rUDhbwg89bpT-V7qYoW-NNfjFaG3nFcDWu-U49vpUFB_L4njc2GFl6l60Efb4oT-_0e3oi3Dh8nwyLZhG2ciBHGUnRMB_J-D2jQk2Qz_WM4n8A_8b8ZqFDpj80B6KJ9T2bXR7rYcl0M8MaDCsR68.jpg?r=93f" /></span>&nbsp;{{ title.name }}</button>
+                                        <button class="title_btn" type="submit" name="title" value="{{ title.title_id }}">
+                                            <span>
+                                                <img src="{{ title.image }}" />
+                                            </span>&nbsp;
+                                            <!-- {{ title.name }} -->
+                                        </button>
                                     </a>
                                     </form>
                                 </div>
                             {% endfor %}
                         </div>
-                        <!-- <div class="swiper-button-next"></div>
-                        <div class="swiper-button-prev"></div> -->
                     </div>
                 </section>
             {% endif %}
         {% endfor %}
 
         {% for name, tset in sset %}
-            {% if sset %}
-            <div class="titles-sim">
-                Titles Similar to {{ name }}
-            </div>
-            <section class="thumbSection">
-                <div class="thumbTiles swiper-container">
-                    <!-- Additional required wrapper -->
-                    <div class="swiper-wrapper">
-                        <!-- Slides -->
-                        {% for title in tset %}
-                            <div class="swiper-slide">
-                                <form method=POST action="{% url 'title' %}">
-                                {% csrf_token %}
-                                <a class="thumbTile" href="#">
-                                    <button type="submit" name="title" value="{{ title.title_id }}"><span><img src="https://occ-0-1433-1432.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABUqwomVyMFsby9zeXLLnkfv744mKCzQDWL7rUDhbwg89bpT-V7qYoW-NNfjFaG3nFcDWu-U49vpUFB_L4njc2GFl6l60Efb4oT-_0e3oi3Dh8nwyLZhG2ciBHGUnRMB_J-D2jQk2Qz_WM4n8A_8b8ZqFDpj80B6KJ9T2bXR7rYcl0M8MaDCsR68.jpg?r=93f" /></span>&nbsp;{{ title.name }}</button>
-                                </a>
-                                </form>
-                            </div>
-                        {% endfor %}
+            {% if tset %}
+            <div class="titles-sim">Titles Similar to {{ name }}</div>
+                <section class="thumbSection">
+                    <div class="thumbTiles swiper-container">
+                        <!-- Additional required wrapper -->
+                        <div class="swiper-wrapper">
+                            <!-- Slides -->
+                            {% for title in tset %}
+                                <div class="swiper-slide">
+                                    <form method=POST action="{% url 'title' %}">
+                                    {% csrf_token %}
+                                    <a class="thumbTile" href="#">
+                                        <button class="title_btn" type="submit" name="title" value="{{ title.title_id }}">
+                                            <span>
+                                                <img src="{{ title.image }}" />
+                                            </span>&nbsp;
+                                            <!-- {{ title.name }} -->
+                                        </button>
+                                    </a>
+                                    </form>
+                                </div>
+                            {% endfor %}
+                        </div>
                     </div>
-                    <!-- <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div> -->
-                </div>
-            </section>
-        {% endif %}
-    {% endfor %}
+                </section>
+            {% endif %}
+        {% endfor %}
 
     <script type="text/javascript">
 
