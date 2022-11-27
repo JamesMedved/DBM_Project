@@ -96,6 +96,12 @@ body {
     text-decoration: none;
     cursor: pointer;
     height: 60px;
+    width: 100px;
+}
+
+.title-img {
+    width: 330px;
+    height:auto;
 }
 
 .titles-sim {
