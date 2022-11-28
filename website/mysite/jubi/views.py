@@ -214,7 +214,6 @@ def get_similar_recs(qset):
     return zip(titles, similar_titles)
 
 def get_recs(qset):
-    all_similar = []
     all_actors = []
     all_dirs = []
     recs = []
@@ -229,11 +228,14 @@ def get_recs(qset):
         dir = title.title.director.split(',')[0]
         if dir: all_dirs.append(dir)
 
-        # Get get base name
+        # Add titles with similar base names to recommendation list
         base_name = title.title.name.split(':')[0]
         if base_name[-1].isdigit():
             base_name = base_name[:-1].rstrip()
-        if base_name: all_similar.append(base_name)
+        similar_titles = Titles.objects.filter(name__icontains=base_name).exclude(name=title.title.name)
+    
+        if len(similar_titles) > 4:
+            recs.append(["similar", title.title.name, similar_titles[:15]])
 
     # Sort all actors and directors by quantity and remove duplicates
     all_actors = [key for key, value in Counter(all_actors).most_common()]
@@ -255,14 +257,5 @@ def get_recs(qset):
             recs.append(["director", dir, dir_titles[:15]])
             count += 1
         if count == 5: break
-
-    # Get titles for each similar name
-    count = 0
-    for name in all_similar:
-        name_titles = Titles.objects.filter(name__icontains=base_name).exclude(name=title.title.name)
-        # if len(name_titles) > 4:
-        recs.append(["similar", name, name_titles[:15]])
-            # count += 1
-        # if count == 5: break
 
     return recs
