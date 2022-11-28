@@ -18,7 +18,7 @@ body {
     text-align:left;
     border: 1px solid black;
     border-radius: 5px;
-    top:70%;
+    top:65%;
     left:50%;
     position: absolute;
     transform:translate(-50%, -50%);
