@@ -1,4 +1,5 @@
 {% extends 'nav.html' %}
+{% load static %}
 
 {% block content %}
     <section class="home-section">
@@ -21,9 +22,10 @@
                                     {% csrf_token %}
                                     <a class="thumbTile" href="#">
                                         <button class="title_btn" type="submit" name="title" value="{{ title.title_id }}">
-                                            <span>
-                                                <img class ="title-img" src="{{title.image}}"
-                                            <!-- {{ title.name }} -->
+                                                <!-- <img class ="title-img" src="{% static 'images/jubi_orange.png' %}"> -->
+                                                <span class="title-name">
+                                                    {{ title.name }}
+                                                </span>
                                         </button>
                                     </a>
                                     </form>

@@ -170,12 +170,14 @@
   transition: all 0.5s ease;
   color: #11101D;
 }
+
 .sidebar li i{
   height: 50px;
   line-height: 50px;
   font-size: 18px;
   border-radius: 12px;
 }
+
 .sidebar li.profile{
   position: fixed;
   height: 60px;
@@ -211,6 +213,9 @@
   color: #fff;
   white-space: nowrap;
   align-items: center;
+  position:absolute;
+  padding-top: 38px;
+  padding-left: 15px;
 }
 
 .sidebar .profile #log_out{

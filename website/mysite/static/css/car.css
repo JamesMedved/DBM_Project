@@ -92,11 +92,16 @@ body {
 }
 
 .title_btn {
-    border:none;
+    border: none;
     text-decoration: none;
     cursor: pointer;
-    height: 60px;
-    width: 100px;
+    height: 100px;
+    width: 330px;
+    background: none;
+    padding: 5px;
+    background: grey;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    background-image: linear-gradient(to bottom right, #ca5e16d3,rgba(235, 42, 42, 0.795));
 }
 
 .title-img {
@@ -110,4 +115,10 @@ body {
     padding-left: 15px;
     padding-bottom: 5px;
     padding-top: 60px;
+}
+
+.title-name {
+    color:white;
+    font-size: 20px;
+    width: 330px;
 }
