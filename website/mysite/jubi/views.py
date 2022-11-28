@@ -12,6 +12,7 @@ from collections import Counter
 from itertools import chain
 from django.contrib.auth.models import User
 from django.db.models import Q
+import random
 
 # Create your views here.
 @login_required(login_url='loginPage')
@@ -23,10 +24,8 @@ def home(request):
         if search:
             return render(request, 'search.html', {'tset': Titles.objects.filter(Q(name__icontains=search) | Q(cast__icontains=search) | Q(director__icontains=search)), 'search':search})
 
-    # Get watched and watch later titles
-    qset = list(chain(WatchLater.objects.filter(user_id=request.user.id), Watched.objects.filter(user_id=request.user.id)))
-    # return render(request, 'home.html', {'aset': get_actor_recs(qset), 'dset': get_director_recs(qset), 'sset': get_similar_recs(qset)})
-    return render(request, 'home.html', {'aset': get_actor_recs(qset), 'dset': get_director_recs(qset), 'sset': ""})
+    # Return recommendations from watched and watch later titles
+    return render(request, 'home.html', {'rset': get_recs(list(chain(WatchLater.objects.filter(user_id=request.user.id), Watched.objects.filter(user_id=request.user.id))))})
 
 @login_required(login_url='loginPage')
 def social(request):
@@ -108,10 +107,8 @@ def search(request):
         if w_id:
             Watched(title_id = w_id, user_id=request.user.id, finished=date.today()).save()
         
-    # Get watched and watch later titles
-    qset = list(chain(WatchLater.objects.filter(user_id=request.user.id), Watched.objects.filter(user_id=request.user.id)))
-    # return render(request, 'home.html', {'aset': get_actor_recs(qset), 'dset': get_director_recs(qset), 'sset': get_similar_recs(qset)})
-    return render(request, 'home.html', {'aset': get_actor_recs(qset), 'dset': get_director_recs(qset), 'sset': ""})
+    # Return recommendations from watched and watch later titles
+    return render(request, 'home.html', {'rset': get_recs(list(chain(WatchLater.objects.filter(user_id=request.user.id), Watched.objects.filter(user_id=request.user.id))))})
 
 @login_required(login_url='loginPage')
 def watch_later(request):
@@ -197,27 +194,6 @@ def logoutUser(request):
     logout(request)
     return redirect('loginPage')
 
-def get_actor_recs(qset):
-    all_actors = []
-    actors_recs = []
-    rec_titles = []
-    #  Get all actors in watched and watch later tables
-    for title in qset:
-        all_actors.extend([actor for actor in title.title.cast.split(',') if actor])
-
-    # Sort all actors and remove duplicates
-    all_actors = [key for key, value in Counter(all_actors).most_common()]
-
-    # Get titles for each actor
-    for actor in all_actors:
-        actor_titles = Titles.objects.filter(cast__icontains=actor)
-        if len(actor_titles) > 4:
-            actors_recs.append(actor)
-            rec_titles.append(actor_titles)
-        if len(actors_recs) == 5:
-            break
-
-    return zip(actors_recs[:15], rec_titles[:15])
 
 def get_similar_recs(qset):
     titles = []
@@ -237,25 +213,56 @@ def get_similar_recs(qset):
                 similar_titles.append(query)
     return zip(titles, similar_titles)
 
-def get_director_recs(qset):
+def get_recs(qset):
+    all_similar = []
+    all_actors = []
     all_dirs = []
-    dir_recs = []
-    rec_titles = []
-    #  Get all actors in watched and watch later tables
+    recs = []
+    count = 0
+
+    #  Get all actors and directors from watched and watch later tables
     for title in qset:
+        # Get all actors for title
+        all_actors.extend([actor for actor in title.title.cast.split(',') if actor])
+
+        # Get all directors for title
         dir = title.title.director.split(',')[0]
         if dir: all_dirs.append(dir)
 
-    # Sort all actors and remove duplicates
+        # Get get base name
+        base_name = title.title.name.split(':')[0]
+        if base_name[-1].isdigit():
+            base_name = base_name[:-1].rstrip()
+        if base_name: all_similar.append(base_name)
+
+    # Sort all actors and directors by quantity and remove duplicates
+    all_actors = [key for key, value in Counter(all_actors).most_common()]
     all_dirs = [key for key, value in Counter(all_dirs).most_common()]
 
     # Get titles for each actor
+    for actor in all_actors:
+        actor_titles = Titles.objects.filter(cast__icontains=actor)
+        if len(actor_titles) > 4:
+            recs.append(["actor", actor, actor_titles[:15]])
+            count += 1
+        if count == 5: break
+
+    # Get titles for each director
+    count = 0
     for dir in all_dirs:
         dir_titles = Titles.objects.filter(director__icontains=dir)
         if len(dir_titles) > 4:
-            dir_recs.append(dir)
-            rec_titles.append(dir_titles)
-        if len(dir_recs) == 5:
-            break
+            recs.append(["director", dir, dir_titles[:15]])
+            count += 1
+        if count == 5: break
 
-    return zip(dir_recs[:15], rec_titles[:15])
+    # Get titles for each similar name
+    count = 0
+    for name in all_similar:
+        name_titles = Titles.objects.filter(name__icontains=base_name).exclude(name=title.title.name)
+        # if len(name_titles) > 4:
+        recs.append(["similar", name, name_titles[:15]])
+            # count += 1
+        # if count == 5: break
+
+    return recs

@@ -6,30 +6,36 @@
         <div class="text">Home</div>
         <p></p>
 
-        {% for actor, tset in aset %}
-            {% if tset %}
-                <div class="titles-sim">Titles Staring {{ actor }}</div>
-                    <section class="thumbSection">
-                            <div class="thumbTiles swiper-container">
-                                <div class="swiper-wrapper">
-                                    {% for title in tset %}
-                                        <div class="swiper-slide">
-                                            <form method=POST action="{% url 'title' %}">
-                                                {% csrf_token %}
-                                                <a class="thumbTile" href="#">
-                                                    <button class="title_btn" type="submit" name="title" value="{{ title.title_id }}">
-                                                        <span class="title-name">{{ title.name }}</span>
-                                                    </button>
-                                                </a>
-                                            </form>
-                                        </div>
-                                    {% endfor %}
-                                </div>
+        {% for type, attr, tset in rset %}
+            {% if type == 'actor' %}
+                <div class="titles-sim">Titles Staring {{ attr }}</div>
+            {% endif %}
+            {% if type == 'director' %}
+                <div class="titles-sim">Titles Directed by {{ attr }}</div>
+            {% endif %}
+            {% if type == 'similar' %}
+                <div class="titles-sim">Titles Similar to {{ attr }}</div>
+            {% endif %}
+                <section class="thumbSection">
+                        <div class="thumbTiles swiper-container">
+                            <div class="swiper-wrapper">
+                                {% for title in tset %}
+                                    <div class="swiper-slide">
+                                        <form method=POST action="{% url 'title' %}">
+                                            {% csrf_token %}
+                                            <a class="thumbTile" href="#">
+                                                <button class="title_btn" type="submit" name="title" value="{{ title.title_id }}">
+                                                    <span class="title-name">{{ title.name }}</span>
+                                                </button>
+                                            </a>
+                                        </form>
+                                    </div>
+                                {% endfor %}
                             </div>
                         </div>
-                    </section>
-                </div>
-            {% endif %}
+                    </div>
+                </section>
+            </div>
         {% endfor %}
 
         {% for director, tset in dset %}
