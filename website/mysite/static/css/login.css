@@ -18,7 +18,7 @@ body {
     text-align:left;
     border: 1px solid black;
     border-radius: 5px;
-    top:60%;
+    top:55%;
     left:50%;
     position: absolute;
     transform:translate(-50%, -50%);
@@ -77,6 +77,6 @@ body {
     margin-right: auto;
     margin-top: 5%;
     margin-bottom: 50px;
-    height: 100px;
+    height: 200px;
     width: auto;
 }
