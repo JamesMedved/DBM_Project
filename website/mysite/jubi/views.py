@@ -25,7 +25,8 @@ def home(request):
 
     # Get watched and watch later titles
     qset = list(chain(WatchLater.objects.filter(user_id=request.user.id), Watched.objects.filter(user_id=request.user.id)))
-    return render(request, 'home.html', {'aset': get_actor_recs(qset), 'dset': get_director_recs(qset), 'sset': get_similar_recs(qset)})
+    # return render(request, 'home.html', {'aset': get_actor_recs(qset), 'dset': get_director_recs(qset), 'sset': get_similar_recs(qset)})
+    return render(request, 'home.html', {'aset': get_actor_recs(qset), 'dset': get_director_recs(qset), 'sset': ""})
 
 @login_required(login_url='loginPage')
 def social(request):
@@ -36,7 +37,7 @@ def social(request):
         search = request.POST.get('search')
         if search:
             return render(request, 'search.html', {'tset': Titles.objects.filter(Q(name__icontains=search) | Q(cast__icontains=search) | Q(director__icontains=search)), 'search':search})
-            
+
         # Check for user search
         user_search = request.POST.get('friend_search')
         if user_search:
@@ -109,7 +110,8 @@ def search(request):
         
     # Get watched and watch later titles
     qset = list(chain(WatchLater.objects.filter(user_id=request.user.id), Watched.objects.filter(user_id=request.user.id)))
-    return render(request, 'home.html', {'aset': get_actor_recs(qset), 'dset': get_director_recs(qset), 'sset': get_similar_recs(qset)})
+    # return render(request, 'home.html', {'aset': get_actor_recs(qset), 'dset': get_director_recs(qset), 'sset': get_similar_recs(qset)})
+    return render(request, 'home.html', {'aset': get_actor_recs(qset), 'dset': get_director_recs(qset), 'sset': ""})
 
 @login_required(login_url='loginPage')
 def watch_later(request):
@@ -196,24 +198,26 @@ def logoutUser(request):
     return redirect('loginPage')
 
 def get_actor_recs(qset):
-    actors = []
-    actor_titles = []
-    # Get cast for each title in watched and watch later tables
+    all_actors = []
+    actors_recs = []
+    rec_titles = []
+    #  Get all actors in watched and watch later tables
     for title in qset:
-        if title.title.cast:
-            actors_lst = title.title.cast.split(',')
-            for i in range(len(actors_lst)):
-                actors.append(actors_lst[i]) 
-    # Get top 5 actors from watched and watch later tables
-    actors = [key for key, value in Counter(actors).most_common()][:5]
-    # Get titles for each of top 5 actors as long as more than two are returned
-    for actor in actors:
-        query = Titles.objects.filter(cast__icontains=actor)
-        if len(query) > 3:
-            actor_titles.append(query)
-        else:
-            actors.remove(actor)
-    return zip(actors, actor_titles)
+        all_actors.extend([actor for actor in title.title.cast.split(',') if actor])
+
+    # Sort all actors and remove duplicates
+    all_actors = [key for key, value in Counter(all_actors).most_common()]
+
+    # Get titles for each actor
+    for actor in all_actors:
+        actor_titles = Titles.objects.filter(cast__icontains=actor)
+        if len(actor_titles) > 4:
+            actors_recs.append(actor)
+            rec_titles.append(actor_titles)
+        if len(actors_recs) == 5:
+            break
+
+    return zip(actors_recs[:15], rec_titles[:15])
 
 def get_similar_recs(qset):
     titles = []
@@ -221,11 +225,9 @@ def get_similar_recs(qset):
     # Get similar titles for each title in watched and watch later tables
     for title in qset:
         # Get get base name
-        base_name = title.title.name
-        if ':' in base_name:
-            base_name = base_name.split(':')[0]
+        base_name = title.title.name.split(':')[0]
         if base_name[-1].isdigit():
-            base_name = base_name[:-1]
+            base_name = base_name[:-1].rstrip()
         # Make sure not to display the move the similar recommendations are based on
         # Get similar titles as long as more than two are returned
         if title.title.name not in titles:
@@ -236,19 +238,24 @@ def get_similar_recs(qset):
     return zip(titles, similar_titles)
 
 def get_director_recs(qset):
-    directors = []
-    director_titles = []
-    # Get director for each title in watched and watch later tables
+    all_dirs = []
+    dir_recs = []
+    rec_titles = []
+    #  Get all actors in watched and watch later tables
     for title in qset:
-        if title.title.director:
-            directors.append(title.title.director.split(',')[0]) 
-    # Get top 5 directors from watched and watch later tables
-    directors = [key for key, value in Counter(directors).most_common()][:5]
-    # Get titles for each of top 5 directors as long as more than two are returned
-    for director in directors:
-        query = Titles.objects.filter(director__icontains=director)
-        if len(query) > 3:
-            director_titles.append(query)
-        else:
-            directors.remove(director)
-    return zip(directors, director_titles)
+        dir = title.title.director.split(',')[0]
+        if dir: all_dirs.append(dir)
+
+    # Sort all actors and remove duplicates
+    all_dirs = [key for key, value in Counter(all_dirs).most_common()]
+
+    # Get titles for each actor
+    for dir in all_dirs:
+        dir_titles = Titles.objects.filter(director__icontains=dir)
+        if len(dir_titles) > 4:
+            dir_recs.append(dir)
+            rec_titles.append(dir_titles)
+        if len(dir_recs) == 5:
+            break
+
+    return zip(dir_recs[:15], rec_titles[:15])
