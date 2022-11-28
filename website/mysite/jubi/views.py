@@ -258,4 +258,4 @@ def get_recs(qset):
             count += 1
         if count == 5: break
 
-    return recs
+    return random.sample(recs, k=len(recs))
