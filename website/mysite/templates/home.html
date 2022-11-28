@@ -38,56 +38,6 @@
             </div>
         {% endfor %}
 
-        {% for director, tset in dset %}
-            {% if tset %}
-                <div class="titles-sim">Titles Directed by {{ director }}</div>
-                    <section class="thumbSection">
-                        <div class="thumbTiles swiper-container">
-                            <div class="swiper-wrapper">
-                                {% for title in tset %}
-                                    <div class="swiper-slide">
-                                        <form method=POST action="{% url 'title' %}">
-                                        {% csrf_token %}
-                                        <a class="thumbTile" href="#">
-                                            <button class="title_btn" type="submit" name="title" value="{{ title.title_id }}">
-                                                <span class="title-name">{{ title.name }}</span>
-                                            </button>
-                                                </a>
-                                            </form>
-                                        </div>
-                                    {% endfor %}
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-            {% endif %}
-        {% endfor %}
-
-        {% for name, tset in sset %}
-            {% if tset %}
-                <div class="titles-sim">Titles Similar to {{ name }}</div>
-                    <section class="thumbSection">
-                        <div class="thumbTiles swiper-container">
-                            <div class="swiper-wrapper">
-                                {% for title in tset %}
-                                    <div class="swiper-slide">
-                                        <form method=POST action="{% url 'title' %}">
-                                            {% csrf_token %}
-                                            <a class="thumbTile" href="#">
-                                                <button class="title_btn" type="submit" name="title" value="{{ title.title_id }}">
-                                                    <span class="title-name">{{ title.name }}</span>
-                                                </button>
-                                            </a>
-                                        </form>
-                                    </div>
-                                {% endfor %}
-                            </div>
-                        </div>
-                    </section>
-                </div>
-            {% endif %}
-        {% endfor %}
 
     <script type="text/javascript">
 
