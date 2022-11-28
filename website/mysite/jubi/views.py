@@ -32,10 +32,11 @@ def social(request):
     # Search for title if input is not empty
     if request.method == "POST":
         # Check for new search
-        title_search = request.POST.get('search')
-        if title_search:
+        # Check for new search
+        search = request.POST.get('search')
+        if search:
             return render(request, 'search.html', {'tset': Titles.objects.filter(Q(name__icontains=search) | Q(cast__icontains=search) | Q(director__icontains=search)), 'search':search})
-
+            
         # Check for user search
         user_search = request.POST.get('friend_search')
         if user_search:
