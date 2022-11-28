@@ -18,9 +18,7 @@
                                     {% csrf_token %}
                                     <a class="thumbTile" href="#">
                                         <button class="title_btn" type="submit" name="title" value="{{ title.title_id }}">
-                                            <span>
-                                                <img src="{{ title.image }}" />
-                                            </span>&nbsp;
+                                            <span class="title-name">{{ title.name }}</span>
                                         </button>
                                     </a>
                                     </form>
@@ -46,10 +44,7 @@
                                     {% csrf_token %}
                                     <a class="thumbTile" href="#">
                                         <button class="title_btn" type="submit" name="title" value="{{ title.title_id }}">
-                                                <!-- <img class ="title-img" src="{% static 'images/jubi_orange.png' %}"> -->
-                                                <span class="title-name">
-                                                    {{ title.name }}
-                                                </span>
+                                            <span class="title-name">{{ title.name }}</span>
                                         </button>
                                     </a>
                                     </form>
@@ -75,9 +70,7 @@
                                     {% csrf_token %}
                                     <a class="thumbTile" href="#">
                                         <button class="title_btn" type="submit" name="title" value="{{ title.title_id }}">
-                                            <span>
-                                                <img src="{{ title.image }}" />
-                                            </span>&nbsp;
+                                            <span class="title-name">{{ title.name }}</span>
                                         </button>
                                     </a>
                                     </form>
