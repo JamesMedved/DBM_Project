@@ -7,14 +7,10 @@
 
         {% for actor, tset in aset %}
             {% if tset %}
-            <div class="titles-sim">
-                Titles Staring {{ actor }}
-            </div>
+            <div class="titles-sim">Titles Staring {{ actor }}</div>
                 <section class="thumbSection">
                     <div class="thumbTiles swiper-container">
-                        <!-- Additional required wrapper -->
                         <div class="swiper-wrapper">
-                            <!-- Slides -->
                             {% for title in tset %}
                                 <div class="swiper-slide">
                                     <form method=POST action="{% url 'title' %}">
@@ -22,7 +18,8 @@
                                     <a class="thumbTile" href="#">
                                         <button class="title_btn" type="submit" name="title" value="{{ title.title_id }}">
                                             <span>
-                                                <img class ="title-img" src="{{title.image}}"
+                                                <img src="{{ title.image }}" />
+                                            </span>&nbsp;
                                         </button>
                                     </a>
                                     </form>

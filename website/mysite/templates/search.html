@@ -10,7 +10,8 @@
         <table id="info">
           <tr>
             <th> Title </th>
-            <th> Found On </th>
+            <th> Type </th>
+            <th> Duration </th>
             <th> Watch Later </th>
             <th> Watched </th>
           </tr>
@@ -19,10 +20,20 @@
             <td>
               <form method=POST action="{% url 'title' %}">
                 {% csrf_token %}
-                <button type="submit" class="title-btn" name="title", value="{{ title.title_id }}">{{ title.title.name }}</a>
+                <button type="submit" class="title-btn" name="title", value="{{ title.title_id }}">{{ title.name }}</a>
               </form>
-              </td>
-            <td> {{ title.provider }} </td>
+            </td>
+            <td>{{ title.type }} </td>
+            <td>
+              {% if title.type == 'Movie' %}
+                  {{ title.duration }} min
+              {% else %}
+                  {% if title.duration == 1 %}
+                      {{ title.duration }} season
+                  {% else %}
+                      {{ title.duration }} seasons
+                  {% endif %}
+              {% endif %}</td>
             <td>
               <form method=POST action="{% url 'search' %}">
                 {% csrf_token %}

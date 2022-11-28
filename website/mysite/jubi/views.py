@@ -11,6 +11,7 @@ from datetime import date
 from collections import Counter
 from itertools import chain
 from django.contrib.auth.models import User
+from django.db.models import Q
 
 # Create your views here.
 @login_required(login_url='loginPage')
@@ -20,7 +21,7 @@ def home(request):
         # Check for new search
         search = request.POST.get('search')
         if search:
-            return render(request, 'search.html', {'tset': Streaming.objects.filter(title__name__icontains=search), 'search':search})
+            return render(request, 'search.html', {'tset': Titles.objects.filter(Q(name__icontains=search) | Q(cast__icontains=search) | Q(director__icontains=search)), 'search':search})
 
     # Get watched and watch later titles
     qset = list(chain(WatchLater.objects.filter(user_id=request.user.id), Watched.objects.filter(user_id=request.user.id)))
@@ -33,7 +34,7 @@ def social(request):
         # Check for new search
         title_search = request.POST.get('search')
         if title_search:
-            return render(request, 'search.html', {'tset': Streaming.objects.filter(title__name__icontains=title_search), 'search':title_search})
+            return render(request, 'search.html', {'tset': Titles.objects.filter(Q(name__icontains=search) | Q(cast__icontains=search) | Q(director__icontains=search)), 'search':search})
 
         # Check for user search
         user_search = request.POST.get('friend_search')
@@ -61,7 +62,7 @@ def friend(request):
         # Check for new search
         search = request.POST.get('search')
         if search:
-            return render(request, 'search.html', {'tset': Streaming.objects.filter(title__name__icontains=search), 'search':search})
+            return render(request, 'search.html', {'tset': Titles.objects.filter(Q(name__icontains=search) | Q(cast__icontains=search) | Q(director__icontains=search)), 'search':search})
 
         # Return title information
         friend_id = request.POST.get('friend')
@@ -77,7 +78,7 @@ def title(request):
         # Check for new search
         search = request.POST.get('search')
         if search:
-            return render(request, 'search.html', {'tset': Streaming.objects.filter(title__name__icontains=search), 'search':search})
+            return render(request, 'search.html', {'tset': Titles.objects.filter(Q(name__icontains=search) | Q(cast__icontains=search) | Q(director__icontains=search)), 'search':search})
 
         # Return title information
         title = request.POST.get('title')
@@ -95,7 +96,7 @@ def search(request):
 
         # Check for new search
         if search:
-            return render(request, 'search.html', {'tset': Streaming.objects.filter(title__name__icontains=search), 'search':search})
+            return render(request, 'search.html', {'tset': Titles.objects.filter(Q(name__icontains=search) | Q(cast__icontains=search) | Q(director__icontains=search)), 'search':search})
 
         # Insert into watch later table
         if wl_id:
@@ -116,7 +117,7 @@ def watch_later(request):
         # Check for new search
         search = request.POST.get('search')
         if search:
-            return render(request, 'search.html', {'tset': Streaming.objects.filter(title__name__icontains=search), 'search':search})
+            return render(request, 'search.html', {'tset': Titles.objects.filter(Q(name__icontains=search) | Q(cast__icontains=search) | Q(director__icontains=search)), 'search':search})
 
         # Delete from watch later table
         del_id = request.POST.get('btn_del')
@@ -140,7 +141,7 @@ def watched(request):
         # Check for new search
         search = request.POST.get('search')
         if search:
-            return render(request, 'search.html', {'tset': Streaming.objects.filter(title__name__icontains=search), 'search':search})
+            return render(request, 'search.html', {'tset': Titles.objects.filter(Q(name__icontains=search) | Q(cast__icontains=search) | Q(director__icontains=search)), 'search':search})
 
         # Delete from watch later table
         del_id = request.POST.get('btn_del')
@@ -227,11 +228,10 @@ def get_similar_recs(qset):
         # Make sure not to display the move the similar recommendations are based on
         # Get similar titles as long as more than two are returned
         if title.title.name not in titles:
-            titles.append(title.title.name)
             query = Titles.objects.filter(name__icontains=base_name).exclude(name=title.title.name)
             if len(query) > 3:
-                similar_titles.append(query)
                 titles.append(title.title.name)
+                similar_titles.append(query)
     return zip(titles, similar_titles)
 
 def get_director_recs(qset):
