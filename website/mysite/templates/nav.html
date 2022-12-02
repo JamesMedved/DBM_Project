@@ -1,0 +1,110 @@
+{% load static %}
+
+<!DOCTYPE html>
+<!-- Created by CodingLab |www.youtube.com/CodingLabYT-->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/car.css' %}">
+   </head>
+<body>
+  <div class="sidebar">
+    <div class="logo-details">
+        <div class="logo_name">JUBI</div>
+        <i class='bx bx-menu' id="btn" ></i>
+    </div>
+    <ul class="nav-list">
+      <li>
+        <form method=POST action="">
+          {% csrf_token %}
+          <i class='bx bx-search' type="submit"></i>
+          <input type="text" placeholder="Search..." name="search" required>
+          <span class="tooltip">Search</span>
+        </form>
+      </li>
+      <li>
+       <a href="{% url 'home' %}">
+         <i class='bx bx-home' id='home'></i>
+         <span class="links_name">Home</span>
+       </a>
+       <span class="tooltip">Home</span>
+     </li>
+     <li>
+      <a href="{% url 'social' %}">
+        <i class='bx bx-user' id='social'></i>
+        <span class="links_name">Social</span>
+      </a>
+      <span class="tooltip">Social</span>
+    </li>
+     <li>
+        <a href="{% url 'watchlater' %}">
+          <i class='bx bx-movie' id='watchLater'></i>
+          <span class="links_name">Watch Later</span>
+        </a>
+        <span class="tooltip">Watch Later</span>
+    </li>
+     <li>
+        <a href="{% url 'watched' %}">
+          <i class='bx bxs-binoculars' id='watched'></i>
+          <span class="links_name">Watched</span>
+        </a>
+        <span class="tooltip">Watched</span>
+      </li>
+     <li class="profile">
+         <div class="profile-details">
+             <div class="name">
+              Hello, {{request.user.first_name}}
+            </div>
+         </div>
+         <a href="{% url 'logoutUser' %}">
+          <i class='bx bx-log-out' id="log_out"></i>
+        </a>
+     </li>
+    </ul>
+  </div>
+
+  <script>
+  let sidebar = document.querySelector(".sidebar");
+  let closeBtn = document.querySelector("#btn");
+  let searchBtn = document.querySelector(".bx-search");
+
+  closeBtn.addEventListener("click", ()=>{
+    sidebar.classList.toggle("open");
+    menuBtnChange();//calling the function(optional)
+  });
+
+  searchBtn.addEventListener("click", ()=>{ // Sidebar open when you click on the search iocn
+    sidebar.classList.toggle("open");
+    menuBtnChange(); //calling the function(optional)
+  });
+
+  // following are the code to change sidebar button(optional)
+  function menuBtnChange() {
+   if(sidebar.classList.contains("open")){
+     closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");//replacing the iocns class
+   }else {
+     closeBtn.classList.replace("bx-menu-alt-right","bx-menu");//replacing the iocns class
+   }
+  }
+
+  document.addEventListener('invalid', (function () {
+  return function (e) {
+    e.preventDefault();
+    document.getElementById("search").focus();
+  };
+  })(), true);
+  </script>
+
+  {% block content %}
+
+  {% endblock %}
+
+</body>
+</html>

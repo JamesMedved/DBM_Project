@@ -1,0 +1,64 @@
+{% extends 'nav.html' %}
+
+{% block content %}
+  <section class="home-section">
+    <script>
+      let form = document.getElementById('title').addEventListener('click', function(){
+          event.preventDefault();
+      });
+    </script>
+    <div class="text">Watched</div>
+  
+    {% if tset %}
+      <div class="container">
+        <div class="table">
+          <table id="info">
+            <tr>
+              <th> Title </th>
+              <th> Date Finished </th>
+              <th> Rating </th>
+              <th> Delete </th>
+            </tr>
+            {% for title in tset %}
+            <tr>
+              <td>
+                <form method=POST action="{% url 'title' %}">
+                  {% csrf_token %}
+                  <button type="submit" class="title-btn" name="title" value="{{ title.title_id }}">{{ title.title.name }}</a>
+                </form>
+              </td>
+              <td> {{ title.finished }} </td>
+              <td> <form method=POST action="{% url 'watched' %}">
+                {% csrf_token %}
+                <input name="w_id" value="{{ title.title_id }}" hidden="" >
+                  <select onChange="form.submit();" name="dp_rat" class="dropbtn">
+                    <div class ="dropdown-content">
+                      <option value="{{ title.rating }}">{{ title.rating }}</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                   </div>
+                </select>
+              </form>
+              </td>
+              <td>
+                <form method=POST action="{% url 'watched' %}">
+                  {% csrf_token %}
+                  <button type="submit", class="btn", name="btn_del", value="{{ title.title_id }}">x</button>
+                </form>
+            </td>
+            </tr>
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+    {% else %}
+      <div class="none">
+        Your title List is Empty
+      </div>
+    {% endif %}
+  </section>
+
+{% endblock %}
