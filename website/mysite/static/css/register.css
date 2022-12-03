@@ -2,7 +2,7 @@ body {
     margin:0;
     padding:0;
     height: 100%;
-    background: #E2E0E1;
+    background-image: linear-gradient(to bottom right, #1d1b31,rgb(27, 26, 26));
     background-size: cover;
     background-position: center;
     height: 100vh;
@@ -14,7 +14,7 @@ body {
     justify-content: center;
     flex-direction: column;
     padding: 10px;
-    background: rgb(73,97,132);
+    background: rgb(56, 59, 97);
     text-align:left;
     border: 1px solid black;
     border-radius: 5px;
@@ -40,13 +40,15 @@ body {
 
 .input-group input[type="text"], input[type="password"] {
     height: 20px;
+    padding: 0px;
 }
 
 .login_btn {
     width: 100%;
-    background: rgb(40,55,82) !important;
+    background: #576a9c !important;
     color: white !important;
     border: 1px;
+    cursor: pointer;
 }
 
 .login_btn:focus {
@@ -64,4 +66,14 @@ body {
 
 .Already a{
     color: orange;
+}
+
+.logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+    margin-top: 2%;
+    height: 180px;
+    width: auto;
 }

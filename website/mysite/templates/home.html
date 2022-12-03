@@ -1,0 +1,71 @@
+{% extends 'nav.html' %}
+{% load static %}
+
+{% block content %}
+    <section class="home-section">
+        <div class="text">Home</div>
+        <p></p>
+
+        {% for type, attr, tset in rset %}
+            {% if type == 'actor' %}
+                <div class="titles-sim">Titles Starring {{ attr }}</div>
+            {% endif %}
+            {% if type == 'director' %}
+                <div class="titles-sim">Titles Directed by {{ attr }}</div>
+            {% endif %}
+            {% if type == 'similar' %}
+                <div class="titles-sim">Titles Similar to {{ attr }}</div>
+            {% endif %}
+                <section class="thumbSection">
+                        <div class="thumbTiles swiper-container">
+                            <div class="swiper-wrapper">
+                                {% for title in tset %}
+                                    <div class="swiper-slide">
+                                        <form method=POST action="{% url 'title' %}">
+                                            {% csrf_token %}
+                                            <a class="thumbTile" href="#">
+                                                <button class="title_btn" type="submit" name="title" value="{{ title.title_id }}">
+                                                    <span class="title-name">{{ title.name }}</span>
+                                                </button>
+                                            </a>
+                                        </form>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        {% endfor %}
+
+
+    <script type="text/javascript">
+
+    var mySwiper = new Swiper('.swiper-container', {
+        // Optional parameters
+        spaceBetween: 5,
+        slidesPerView: 2,
+        loop: true,
+        freeMode: true,
+        loopAdditionalSlides: 5,
+        speed: 500,
+        // Navigation arrows
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        breakpoints: {
+            // when window width is >= 640px
+            640: {
+                slidesPerView: 5,
+                slidesPerGroup: 5,
+                freeMode: false
+            }
+        }
+    })
+    
+    let form = document.getElementById('home').addEventListener('click', function(){
+        event.preventDefault();
+    });
+    </script>
+{% endblock %}

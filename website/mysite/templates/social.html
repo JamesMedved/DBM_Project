@@ -1,0 +1,86 @@
+{% extends 'nav.html' %}
+
+{% block content %}
+    <section class="home-section">
+        <div class="text">Social</div>
+            <div class="friend">
+                Search for a Friend
+            </div>
+            <form method=POST action="">
+                {% csrf_token %}
+                    <div class="friend_search">
+                        <i class='bx bx-search' type="submit"></i>
+                        <input type="text" placeholder="Search..." name="friend_search" required>
+                    </div>
+            </form>
+
+    {% if uset %}
+        <div class="container">
+            <div class="table">
+                <table id="info">
+                <tr>
+                    <th> Username </th>
+                    <th> Add Friend </th>
+                </tr>
+
+                {% for user in uset %}
+                <tr>
+                    <td>{{ user.username }}<td>
+                    <form method=POST action="{% url 'social' %}">
+                        {% csrf_token %}
+                        <button type="submit", class ="btn" name="add_fr" , value="{{ user.id }}">+</button>
+                    </form>
+                    </td>
+                </tr>
+                {% endfor %}
+                </table>
+            </div>
+        </div>
+    {% else %}
+      {% if search %}
+        <div class="none">
+            Your search "{{ search }}" did not have any matches.
+        </div>
+      {% endif %}
+    {% endif %}
+
+    <div class="friend">
+        Friends List
+    </div>
+        {% if fset %}
+        <div class="container">
+            <div class="table">
+                <table id="info">
+                    <tr>
+                    <th> Username </th>
+                    <th> Delete </th>
+                    </tr>
+                    {% for friend in fset%}
+                    <tr>
+                        <td>
+                            <form method=POST action="{% url 'friend' %}">
+                                {% csrf_token %}
+                                <button type="submit" class="title-btn" name="friend" value="{{ friend.friend.id }}">{{ friend.friend.username }}</a>
+                            </form>
+                        </td>
+                        <td>
+                            <form method=POST action="{% url 'social' %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn" name="btn_del" value="{{ friend.friend.id }}">x</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    {% else %}
+        <div class="none">You have not added any Friends. Try searching for another user.</div>
+    {% endif %}
+
+    <script type="text/javascript">
+    let form = document.getElementById('social').addEventListener('click', function(){
+        event.preventDefault();
+    });
+    </script>
+{% endblock %}

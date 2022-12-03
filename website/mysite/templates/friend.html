@@ -1,0 +1,85 @@
+{% extends 'nav.html' %}
+
+{% block content %}
+  <section class="home-section">
+  <div class="text">{{ friend.username}}'s Profile</div>
+  <p></p>
+  <div class="section-container">
+    <div class="accent-left"></div>
+    <div class="section-text">
+      {{ friend.username}}'s Watch Later Titles
+    </div> 
+    <div class="accent-right"></div>
+  </div>
+  
+    {% if wlset %}
+      <div class="container">
+        <div class="table">
+          <table id="info">
+            <tr>
+              <th> Title </th>
+              <th> Date Added </th>
+              <th> Priority </th>
+            </tr>
+            {% for title in wlset%}
+            <tr>
+              <td>
+                <form method=POST action="{% url 'title' %}">
+                  {% csrf_token %}
+                  <button type="submit" class="title-btn" name="title", value="{{ title.title_id }}">{{ title.title.name }}</a>
+                </form>
+              </td>
+              <td> {{ title.date_added }} </td>
+              <td> {{ title.priority }}</td>
+            </tr>
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+    {% else %}
+      <div class="none">
+        {{ friend.username}}'s Watch Later List is Empty
+      </div>
+    {% endif %}
+
+    <div class="section-container">
+      <div class="accent-left"></div>
+      <div class="section-text">
+        Watched
+      </div> 
+      <div class="accent-right"></div>
+    </div>
+  
+    {% if wset %}
+      <div class="container">
+        <div class="table">
+          <table id="info">
+            <tr>
+              <th> Title </th>
+              <th> Date Finished </th>
+              <th> Rating </th>
+            </tr>
+            {% for title in wset %}
+            <tr>
+              <td>
+                <form method=POST action="{% url 'title' %}">
+                  {% csrf_token %}
+                  <button type="submit" class="title-btn" name="title", value="{{ title.title_id }}">{{ title.title.name }}</a>
+                </form>
+              </td>
+              <td> {{ title.finished }} </td>
+              <td>{{ title.rating }}</td>
+            </tr>
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+    {% else %}
+      <div class="none">
+        {{ friend.username}}'s Watched List is Empty
+      </div>
+    {% endif %}
+
+  </section>
+
+{% endblock %}

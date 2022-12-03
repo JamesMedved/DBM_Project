@@ -1,55 +1,63 @@
-{% extends 'base.html' %}
+{% extends 'nav.html' %}
 
 {% block content %}
+  <section class="home-section">
+    <div class="text">Because you searched: "{{ search }}"</div>
 
-  <div class="title">
-    <h1>Search Netflix, Amazon, Hulu, and Disney+</h1>
-    <form class="search" method=POST action="" style="margin:auto;max-width:300px">
-      {% csrf_token %}
-      <input type="text" placeholder="Title, Cast, Director, etc. " name="search">
-      <button type="submit"><i class="fa fa-search"></i></button>
-    </form>
-    <div class="check-box">
-      <form action="" method="POST">
-        <input type="checkbox" name="Netflix" value="Netflix"/> Netflix
-        <input type="checkbox" name="Prime" value="Prime"/> Prime
-        <input type="checkbox" name="Hulu" value="Hulu"/> Hulu
-        <input type="checkbox" name="Disney+" value="disney+"/> Disney+
-      </form>
-    </div>
-  </div>
-
-
-  {% if title_set %}
-  <div class="container">
-    <div class="table">
-      <table id="info">
-        <tr>
-          <th> Titles </th>
-          <th> Cast </th>
-          <th> Director </th>
-          <th> Watch Later </th>
-        </tr>
-        {% for instance in title_set %}
-        <tr>
-          <td> {{ instance.name }} </td>
-          <td> {{ instance.cast }} </td>
-          <td> {{ instance.director }} </td>
-          <td>
+    {% if tset %}
+    <div class="container">
+      <div class="table">
+        <table id="info">
+          <tr>
+            <th> Title </th>
+            <th> Type </th>
+            <th> Duration </th>
+            <th> Watch Later </th>
+            <th> Watched </th>
+          </tr>
+          {% for title in tset %}
+          <tr>
+            <td>
+              <form method=POST action="{% url 'title' %}">
+                {% csrf_token %}
+                <button type="submit" class="title-btn" name="title", value="{{ title.title_id }}">{{ title.name }}</a>
+              </form>
+            </td>
+            <td>{{ title.type }} </td>
+            <td>
+              {% if title.type == 'Movie' %}
+                  {{ title.duration }} min
+              {% else %}
+                  {% if title.duration == 1 %}
+                      {{ title.duration }} season
+                  {% else %}
+                      {{ title.duration }} seasons
+                  {% endif %}
+              {% endif %}</td>
+            <td>
               <form method=POST action="{% url 'search' %}">
                 {% csrf_token %}
-                <button type="submit", class ="add" name="add_wl" , value="{{ instance.id }}">+</button>
+                <button type="submit", class ="btn" name="add_wl" , value="{{ title.title_id }}">+</button>
+              </form>
+            </td>
+            <td>
+              <form method=POST action="{% url 'search' %}">
+                {% csrf_token %}
+                <button type="submit", class ="btn" name="add_w" , value="{{ title.title_id }}">+</button>
               </form>
           </td>
-        </tr>
-        {% endfor %}
-      </table>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
     </div>
-  </div>
-  {% else %}
-  {% if search %}
-  <div class="none">Your search "{{ search }}" did not have any matches.</div>
-  {% endif %}
-  {% endif %}
+    {% else %}
+      {% if search %}
+        <div class="none">
+          Your search "{{ search }}" did not have any matches.
+        </div>
+      {% endif %}
+    {% endif %}
+  </section>
 
 {% endblock %}
